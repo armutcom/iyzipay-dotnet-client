@@ -1,8 +1,8 @@
-﻿using Iyzipay.Request;
+﻿using System;
+using Armut.Iyzipay.Request;
 using Newtonsoft.Json;
-using System;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class BinNumber : IyzipayResource
     {

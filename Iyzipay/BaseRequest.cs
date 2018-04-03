@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public class BaseRequest : RequestStringConvertible
     {

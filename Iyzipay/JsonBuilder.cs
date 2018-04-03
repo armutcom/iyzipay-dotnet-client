@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public class JsonBuilder
     {

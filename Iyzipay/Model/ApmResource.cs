@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class ApmResource : IyzipayResource
     {

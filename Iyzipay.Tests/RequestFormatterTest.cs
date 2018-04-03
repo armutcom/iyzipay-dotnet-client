@@ -1,7 +1,6 @@
-﻿using System.Globalization;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Iyzipay.Tests
+namespace Armut.Iyzipay.Tests
 {
     public class RequestFormatterTest
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public class ToStringRequestBuilder
     {

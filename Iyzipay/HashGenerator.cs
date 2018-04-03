@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public sealed class HashGenerator
     {

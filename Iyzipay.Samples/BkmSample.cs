@@ -1,9 +1,9 @@
-﻿using Iyzipay.Request;
-using Iyzipay.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
-namespace Iyzipay.Samples
+namespace Armut.Iyzipay.Samples
 {
     public class BkmSample : Sample
     {

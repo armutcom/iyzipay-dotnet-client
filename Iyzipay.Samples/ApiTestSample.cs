@@ -1,7 +1,7 @@
-﻿using Iyzipay.Model;
+﻿using Armut.Iyzipay.Model;
 using NUnit.Framework;
 
-namespace Iyzipay.Samples
+namespace Armut.Iyzipay.Samples
 {
     public class ApiTestSample : Sample
     {

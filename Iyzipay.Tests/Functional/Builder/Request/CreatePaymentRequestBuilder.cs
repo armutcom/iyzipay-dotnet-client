@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
-using Iyzipay.Model;
-using Iyzipay.Request;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Tests.Functional.Builder.Request
+namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
     public sealed class CreatePaymentRequestBuilder : BaseRequestBuilder
     {
         private string _price = "1";
         private string _paidPrice = "1.1";
         private int _installment = 1;
-        private string _paymentChannel = Model.PaymentChannel.WEB.ToString();
+        private string _paymentChannel = global::Armut.Iyzipay.Model.PaymentChannel.WEB.ToString();
         private string _basketId = "B67832";
         private string _paymentGroup;
         private Buyer _buyer = BuyerBuilder.Create().Build();
         private Address _shippingAddress = AddressBuilder.Create().Build();
         private Address _billingAddress = AddressBuilder.Create().Build();
         private List<BasketItem> _basketItems;
-        private string _currency = Model.Currency.TRY.ToString();
+        private string _currency = global::Armut.Iyzipay.Model.Currency.TRY.ToString();
         private PaymentCard _paymentCard = PaymentCardBuilder.Create().BuildWithCardCredentials().Build();
         private string _paymentSource;
         private string _callbackUrl;
@@ -167,14 +167,14 @@ namespace Iyzipay.Tests.Functional.Builder.Request
         public CreatePaymentRequestBuilder MarketplacePayment(string subMerchantKey)
         {
             _basketItems = BasketItemBuilder.Create().BuildBasketItemsWithSubMerchantKey(subMerchantKey);
-            _paymentGroup = Model.PaymentGroup.PRODUCT.ToString();
+            _paymentGroup = global::Armut.Iyzipay.Model.PaymentGroup.PRODUCT.ToString();
             return this;
         }
 
         public CreatePaymentRequestBuilder StandardListingPayment()
         {
             _basketItems = BasketItemBuilder.Create().BuildDefaultBasketItems();
-            _paymentGroup = Model.PaymentGroup.LISTING.ToString();
+            _paymentGroup = global::Armut.Iyzipay.Model.PaymentGroup.LISTING.ToString();
             return this;
         }
     }

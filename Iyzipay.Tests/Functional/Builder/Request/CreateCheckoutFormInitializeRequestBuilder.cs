@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Iyzipay.Model;
-using Iyzipay.Request;
-using Iyzipay.Tests.Functional.Util;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
+using Armut.Iyzipay.Tests.Functional.Util;
 
-namespace Iyzipay.Tests.Functional.Builder.Request
+namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
     public sealed class CreateCheckoutFormInitializeRequestBuilder : BaseRequestBuilder
     {
         private string _basketId = RandomGenerator.RandomId;
-        private string _paymentGroup = Model.PaymentGroup.LISTING.ToString();
-        private string _currency = Model.Currency.TRY.ToString();
+        private string _paymentGroup = global::Armut.Iyzipay.Model.PaymentGroup.LISTING.ToString();
+        private string _currency = global::Armut.Iyzipay.Model.Currency.TRY.ToString();
         private Buyer _buyer = BuyerBuilder.Create().Build();
         private Address _shippingAddress = AddressBuilder.Create().Build();
         private Address _billingAddress = AddressBuilder.Create().Build();

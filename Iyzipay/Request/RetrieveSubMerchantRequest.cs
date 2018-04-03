@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Iyzipay.Request
+namespace Armut.Iyzipay.Request
 {
     public class RetrieveSubMerchantRequest : BaseRequest
     {

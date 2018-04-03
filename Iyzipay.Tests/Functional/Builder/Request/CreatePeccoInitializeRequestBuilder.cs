@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using Iyzipay.Model;
-using Iyzipay.Request;
-using Iyzipay.Tests.Functional.Util;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
+using Armut.Iyzipay.Tests.Functional.Util;
 
-namespace Iyzipay.Tests.Functional.Builder.Request
+namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
     public class CreatePeccoInitializeRequestBuilder : BaseRequestBuilder
     {
-        private string _currency = Model.Currency.IRR.ToString();
+        private string _currency = global::Armut.Iyzipay.Model.Currency.IRR.ToString();
         private string _basketId = RandomGenerator.RandomId;
         private string _paymentGroup;
         private Buyer _buyer = BuyerBuilder.Create().Build();

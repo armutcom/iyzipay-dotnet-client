@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Iyzipay.Model;
+﻿using Armut.Iyzipay.Model;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
-namespace Iyzipay.Tests
+namespace Armut.Iyzipay.Tests
 {
     public class ToStringRequestBuilderTests
     {

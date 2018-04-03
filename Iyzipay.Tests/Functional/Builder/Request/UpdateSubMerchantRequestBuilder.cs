@@ -1,6 +1,6 @@
-﻿using Iyzipay.Request;
+﻿using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Tests.Functional.Builder.Request
+namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
     public sealed class UpdateSubMerchantRequestBuilder : BaseRequestBuilder
     {
@@ -9,7 +9,7 @@ namespace Iyzipay.Tests.Functional.Builder.Request
         private string _gsmNumber = "+905350000000";
         private string _address = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
         private string _iban = "TR180006200119000006672315";
-        private string _currency = Model.Currency.TRY.ToString();
+        private string _currency = global::Armut.Iyzipay.Model.Currency.TRY.ToString();
         private string _taxOffice;
         private string _contactName;
         private string _contactSurname;

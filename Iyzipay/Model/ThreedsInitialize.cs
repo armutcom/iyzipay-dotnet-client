@@ -1,8 +1,8 @@
-﻿using Iyzipay.Request;
-using System;
+﻿using System;
+using Armut.Iyzipay.Request;
 using Newtonsoft.Json;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class ThreedsInitialize : IyzipayResource
     {

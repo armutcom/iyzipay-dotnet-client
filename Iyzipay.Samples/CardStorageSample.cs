@@ -1,8 +1,8 @@
-﻿using Iyzipay.Model;
-using Iyzipay.Request;
+﻿using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
-namespace Iyzipay.Samples
+namespace Armut.Iyzipay.Samples
 {
     public class CardStorageSample : Sample
     {

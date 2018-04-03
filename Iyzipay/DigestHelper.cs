@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public sealed class DigestHelper
     {

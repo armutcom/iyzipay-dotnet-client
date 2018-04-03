@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using NUnit.Framework;
 
-namespace Iyzipay.Tests
+namespace Armut.Iyzipay.Tests
 {
     public class ToStringRequestStyleTest
     {

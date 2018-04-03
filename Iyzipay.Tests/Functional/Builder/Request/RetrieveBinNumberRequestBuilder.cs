@@ -1,6 +1,6 @@
-﻿using Iyzipay.Request;
+﻿using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Tests.Functional.Builder.Request
+namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
     public sealed class RetrieveBinNumberRequestBuilder : BaseRequestBuilder
     {

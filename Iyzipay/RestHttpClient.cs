@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json;
 
-namespace Iyzipay
+namespace Armut.Iyzipay
 {
     public class RestHttpClient
     {

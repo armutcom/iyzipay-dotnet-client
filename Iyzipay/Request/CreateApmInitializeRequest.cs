@@ -1,8 +1,8 @@
 ﻿using System;
-using Iyzipay.Model;
 using System.Collections.Generic;
+using Armut.Iyzipay.Model;
 
-namespace Iyzipay.Request
+namespace Armut.Iyzipay.Request
 {
     public class CreateApmInitializeRequest : BaseRequest
     {

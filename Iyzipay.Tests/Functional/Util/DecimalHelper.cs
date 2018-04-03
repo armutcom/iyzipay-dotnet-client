@@ -1,4 +1,4 @@
-﻿namespace Iyzipay.Tests.Functional.Util
+﻿namespace Armut.Iyzipay.Tests.Functional.Util
 {
     public static class DecimalHelper
     {

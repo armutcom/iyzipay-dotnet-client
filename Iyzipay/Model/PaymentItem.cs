@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class PaymentItem
     {

@@ -1,4 +1,4 @@
-﻿namespace Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
     public enum PaymentGroup
     {

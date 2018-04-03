@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Iyzipay.Model;
-using Iyzipay.Request;
-using Iyzipay.Tests.Functional.Builder;
-using Iyzipay.Tests.Functional.Builder.Request;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
+using Armut.Iyzipay.Tests.Functional.Builder;
+using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using NUnit.Framework;
 
-namespace Iyzipay.Tests.Functional
+namespace Armut.Iyzipay.Tests.Functional
 {
     public class CheckoutFormTest : BaseTest
     {

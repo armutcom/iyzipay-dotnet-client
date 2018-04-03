@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class InstallmentDetail
     {

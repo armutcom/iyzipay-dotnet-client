@@ -1,7 +1,7 @@
-﻿using Iyzipay.Model;
-using System;
+﻿using System;
+using Armut.Iyzipay.Model;
 
-namespace Iyzipay.Request
+namespace Armut.Iyzipay.Request
 {
     public class CreateBasicPaymentRequest : BaseRequest
     {

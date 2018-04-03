@@ -1,11 +1,11 @@
-﻿using Iyzipay.Model;
-using Iyzipay.Request;
-using Iyzipay.Tests.Functional.Builder;
-using Iyzipay.Tests.Functional.Builder.Request;
-using Iyzipay.Tests.Functional.Util;
+﻿using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
+using Armut.Iyzipay.Tests.Functional.Builder;
+using Armut.Iyzipay.Tests.Functional.Builder.Request;
+using Armut.Iyzipay.Tests.Functional.Util;
 using NUnit.Framework;
 
-namespace Iyzipay.Tests.Functional
+namespace Armut.Iyzipay.Tests.Functional
 {
     public class PaymentTest : BaseTest
     {

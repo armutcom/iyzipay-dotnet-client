@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using Armut.Iyzipay.Request;
 using Newtonsoft.Json;
-using Iyzipay.Request;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class BouncedBankTransferList : IyzipayResource
     {

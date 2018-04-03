@@ -1,6 +1,6 @@
-﻿using Iyzipay.Model;
+﻿using Armut.Iyzipay.Model;
 
-namespace Iyzipay.Tests.Functional.Builder
+namespace Armut.Iyzipay.Tests.Functional.Builder
 {
     public sealed class CardInformationBuilder
     {

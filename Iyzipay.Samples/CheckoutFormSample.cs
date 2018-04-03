@@ -1,9 +1,9 @@
-﻿using Iyzipay.Model;
-using Iyzipay.Request;
+﻿using System.Collections.Generic;
+using Armut.Iyzipay.Model;
+using Armut.Iyzipay.Request;
 using NUnit.Framework;
-using System.Collections.Generic;
 
-namespace Iyzipay.Samples
+namespace Armut.Iyzipay.Samples
 {
     public class CheckoutFormSample : Sample
     {

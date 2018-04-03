@@ -1,7 +1,7 @@
-﻿using Iyzipay.Request;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class InstallmentInfo : IyzipayResource
     {

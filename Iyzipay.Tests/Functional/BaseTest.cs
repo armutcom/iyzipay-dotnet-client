@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
 
-namespace Iyzipay.Tests.Functional
+namespace Armut.Iyzipay.Tests.Functional
 {
     public class BaseTest
     {

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.CodeDom;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class BkmInstallment : RequestStringConvertible
     {

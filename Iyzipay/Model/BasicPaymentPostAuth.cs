@@ -1,6 +1,6 @@
-﻿using Iyzipay.Request;
+﻿using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class BasicPaymentPostAuth : BasicPaymentResource
     {        

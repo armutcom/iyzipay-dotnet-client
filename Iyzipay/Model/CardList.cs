@@ -1,8 +1,8 @@
-﻿using Iyzipay.Request;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Armut.Iyzipay.Request;
 
-namespace Iyzipay.Model
+namespace Armut.Iyzipay.Model
 {
     public class CardList : IyzipayResource
     {

@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <TargetFrameworks>net45;netstandard2.0;netstandard1.3</TargetFrameworks>
-    <AssemblyName>Iyzipay</AssemblyName>
-    <RootNamespace>Iyzipay</RootNamespace>
+    <AssemblyName>Armut.Iyzipay</AssemblyName>
+    <RootNamespace>Armut.Iyzipay</RootNamespace>
 
     <Version>2.1.14</Version>
-    <Authors>Iyzico</Authors>
+    <Authors>Armut Teknoloji A.Ş., Iyzico</Authors>
     <Description>iyzipay api .net client</Description>
-    <PackageProjectUrl>https://github.com/iyzico/iyzipay-dotnet&lt;/projectUrl</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/iyzico/iyzipay-dotnet/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/iyzico/iyzipay-dotnet</RepositoryUrl>
-    <PackageIconUrl>https://en.gravatar.com/userimage/100711999/40aab086bed8dabfb387c0772a73ea7e.png</PackageIconUrl>
-    <Copyright>Copyright 2016</Copyright>
+    <PackageProjectUrl>https://github.com/armutcom/iyzipay-dotnet-client</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/armutcom/iyzipay-dotnet-client/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/armutcom/iyzipay-dotnet-client</RepositoryUrl>
+    <PackageIconUrl>https://armut.com/favicon.ico</PackageIconUrl>
+    <Company>Armut Teknoloji A.Ş.</Company>
   </PropertyGroup>
 
 
