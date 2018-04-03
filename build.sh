@@ -11,7 +11,7 @@ dotnet restore Iyzipay.sln
 OSNAME=$(uname -s)
 echo "OSNAME: $OSNAME"
 
-dotnet build ./Iyzipay.Tests/Iyzipay.Tests.csproj /p:Configuration=Release || exit 1
+dotnet build ./Iyzipay.Tests/Armut.Iyzipay.Tests.csproj /p:Configuration=Release || exit 1
 
 sudo nuget install NUnit.ConsoleRunner -OutputDirectory testrunner
 
@@ -19,7 +19,7 @@ echo --------------------
 echo Running NET45 Tests
 echo --------------------
 
-mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Iyzipay.Tests/bin/Release/net45/Iyzipay.Tests.dll
+mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Armut.Iyzipay.Tests.csproj/bin/Release/net45/Iyzipay.Tests.dll
 
 echo --------------------
 echo Running NETCORE2 Tests
