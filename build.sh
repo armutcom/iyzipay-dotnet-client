@@ -5,7 +5,7 @@ set -e
 
 export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
 
-dotnet restore Iyzipay.sln
+dotnet restore Armut.Iyzipay.sln
 
 # Linux/Darwin
 OSNAME=$(uname -s)
@@ -19,7 +19,7 @@ echo --------------------
 echo Running NET45 Tests
 echo --------------------
 
-mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Iyzipay.Tests/bin/Release/net45/Iyzipay.Tests.dll
+mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Iyzipay.Tests/bin/Release/net45/Armut.Iyzipay.Tests.dll
 
 echo --------------------
 echo Running NETCORE2 Tests
