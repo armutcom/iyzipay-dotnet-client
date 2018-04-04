@@ -7,15 +7,17 @@ namespace Armut.Iyzipay.Samples
 {
     public class Sample
     {
-        protected Options options;
+        protected Options Options;
 
         [SetUp]
         public void Initialize()
         {
-            options = new Options();
-            options.ApiKey = "api key";
-            options.SecretKey = "secret key";
-            options.BaseUrl = "https://sandbox-api.iyzipay.com";
+            Options = new Options
+            {
+                ApiKey = "api key",
+                SecretKey = "secret key",
+                BaseUrl = "https://sandbox-api.iyzipay.com"
+            };
         }
 
         protected void PrintResponse<T>(T resource)
@@ -25,7 +27,6 @@ namespace Armut.Iyzipay.Samples
 #else
             TraceListener consoleListener = new ConsoleTraceListener();
 #endif
-
             Trace.Listeners.Add(consoleListener);
             Trace.WriteLine(JsonConvert.SerializeObject(resource, new JsonSerializerSettings()
             {

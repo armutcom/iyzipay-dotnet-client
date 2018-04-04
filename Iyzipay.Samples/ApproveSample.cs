@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
@@ -7,16 +8,18 @@ namespace Armut.Iyzipay.Samples
     public class ApproveSample : Sample
     {
         [Test]
-        public void Should_Approve_Payment_Item()
+        public async Task Should_Approve_Payment_Item()
         {
-            CreateApprovalRequest request = new CreateApprovalRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.PaymentTransactionId = "1";
+            CreateApprovalRequest request = new CreateApprovalRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                PaymentTransactionId = "1"
+            };
 
-            Approval approval = Approval.Create(request, options);
+            Approval approval = await Approval.CreateAsync(request, Options);
 
-            PrintResponse<Approval>(approval);
+            PrintResponse(approval);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), approval.Status);
             Assert.AreEqual(Locale.TR.ToString(), approval.Locale);

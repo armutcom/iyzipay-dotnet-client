@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
     public class PaymentCard : RequestStringConvertible
     {
-        public String CardHolderName { get; set; }
-        public String CardNumber { get; set; }
-        public String ExpireYear { get; set; }
-        public String ExpireMonth { get; set; }
-        public String Cvc { get; set; }
+        public string CardHolderName { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpireYear { get; set; }
+        public string ExpireMonth { get; set; }
+        public string Cvc { get; set; }
         public int? RegisterCard { get; set; }
-        public String CardAlias { get; set; }
-        public String CardToken { get; set; }
-        public String CardUserKey { get; set; }
+        public string CardAlias { get; set; }
+        public string CardToken { get; set; }
+        public string CardUserKey { get; set; }
 
-        public String ToPKIRequestString()
+        public string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .Append("cardHolderName", CardHolderName)

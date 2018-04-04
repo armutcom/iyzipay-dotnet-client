@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using Armut.Iyzipay.Tests.Functional.Util;
@@ -9,7 +10,7 @@ namespace Armut.Iyzipay.Tests.Functional
     public class SubMerchantTest : BaseTest
     {
         [Test]
-        public void Should_Create_personal_Sub_Merchant()
+        public async Task Should_Create_personal_Sub_Merchant()
         {
             string subMerchantExternalId = RandomGenerator.RandomId;
             CreateSubMerchantRequest request = CreateSubMerchantRequestBuilder.Create()
@@ -20,7 +21,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .SubMerchantExternalId(subMerchantExternalId)
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Create(request, Options);
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(request, Options);
 
             PrintResponse(subMerchant);
 
@@ -34,7 +35,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Create_Private_Sub_Merchant()
+        public async Task Should_Create_Private_Sub_Merchant()
         {
             string subMerchantExternalId = RandomGenerator.RandomId;
             CreateSubMerchantRequest request = CreateSubMerchantRequestBuilder.Create()
@@ -45,7 +46,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .SubMerchantExternalId(subMerchantExternalId)
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Create(request, Options);
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(request, Options);
 
             PrintResponse(subMerchant);
 
@@ -59,7 +60,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Create_Limited_Company_Sub_Merchant()
+        public async Task Should_Create_Limited_Company_Sub_Merchant()
         {
             string subMerchantExternalId = RandomGenerator.RandomId;
             CreateSubMerchantRequest request = CreateSubMerchantRequestBuilder.Create()
@@ -70,7 +71,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .LegalCompanyTitle("XYZ inc")
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Create(request, Options);
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(request, Options);
 
             PrintResponse(subMerchant);
 
@@ -84,13 +85,15 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Update_Personal_Sub_Merchant()
+        public async Task Should_Update_Personal_Sub_Merchant()
         {
             CreateSubMerchantRequest createPersonalSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
                 .PersonalSubMerchantRequest()
                 .Build();
 
-            string subMerchantKey = SubMerchant.Create(createPersonalSubMerchantRequest, Options).SubMerchantKey;
+            var merchant = await SubMerchant.CreateAsync(createPersonalSubMerchantRequest, Options);
+
+            string subMerchantKey = merchant.SubMerchantKey;
 
             UpdateSubMerchantRequest updateSubMerchantRequest = UpdateSubMerchantRequestBuilder.Create()
                 .SubMerchantKey(subMerchantKey)
@@ -100,7 +103,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .Name("Jane's market")
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Update(updateSubMerchantRequest, Options);
+            SubMerchant subMerchant = await SubMerchant.UpdateAsync(updateSubMerchantRequest, Options);
 
             PrintResponse(subMerchant);
 
@@ -114,13 +117,15 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Update_Private_Sub_Merchant()
+        public async Task Should_Update_Private_Sub_Merchant()
         {
             CreateSubMerchantRequest createPrivateSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
                 .PrivateSubMerchantRequest()
                 .Build();
 
-            string subMerchantKey = SubMerchant.Create(createPrivateSubMerchantRequest, Options).SubMerchantKey;
+            var merchant = await SubMerchant.CreateAsync(createPrivateSubMerchantRequest, Options);
+
+            string subMerchantKey = merchant.SubMerchantKey;
 
             UpdateSubMerchantRequest updateSubMerchantRequest = UpdateSubMerchantRequestBuilder.Create()
                 .SubMerchantKey(subMerchantKey)
@@ -129,7 +134,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .LegalCompanyTitle("Jane Doe inc")
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Update(updateSubMerchantRequest, Options);
+            SubMerchant subMerchant = await SubMerchant.UpdateAsync(updateSubMerchantRequest, Options);
 
             PrintResponse(subMerchant);
 
@@ -143,13 +148,15 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Update_Limited_Company_Sub_Merchant()
+        public async Task Should_Update_Limited_Company_Sub_Merchant()
         {
             CreateSubMerchantRequest createLimitedCompanySubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
                 .LimitedCompanySubMerchantRequest()
                 .Build();
 
-            string subMerchantKey = SubMerchant.Create(createLimitedCompanySubMerchantRequest, Options).SubMerchantKey;
+            var merchant = await SubMerchant.CreateAsync(createLimitedCompanySubMerchantRequest, Options);
+
+            string subMerchantKey = merchant.SubMerchantKey;
 
             UpdateSubMerchantRequest updateSubMerchantRequest = UpdateSubMerchantRequestBuilder.Create()
                 .SubMerchantKey(subMerchantKey)
@@ -159,7 +166,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .LegalCompanyTitle("ABC inc")
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Update(updateSubMerchantRequest, Options);
+            SubMerchant subMerchant = await SubMerchant.UpdateAsync(updateSubMerchantRequest, Options);
 
             PrintResponse(subMerchant);
 
@@ -173,7 +180,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Retrieve_Sub_Merchant()
+        public async Task Should_Retrieve_Sub_Merchant()
         {
             string subMerchantExternalId = RandomGenerator.RandomId;
             CreateSubMerchantRequest createLimitedCompanySubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
@@ -181,13 +188,13 @@ namespace Armut.Iyzipay.Tests.Functional
                 .SubMerchantExternalId(subMerchantExternalId)
                 .Build();
 
-            SubMerchant.Create(createLimitedCompanySubMerchantRequest, Options);
+            await SubMerchant.CreateAsync(createLimitedCompanySubMerchantRequest, Options);
 
             RetrieveSubMerchantRequest request = RetrieveSubMerchantRequestBuilder.Create()
                 .SubMerchantExternalId(subMerchantExternalId)
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Retrieve(request, Options);
+            SubMerchant subMerchant = await SubMerchant.RetrieveAsync(request, Options);
 
             PrintResponse(subMerchant);
 

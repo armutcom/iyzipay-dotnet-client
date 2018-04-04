@@ -1,15 +1,22 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class PeccoPayment : PaymentResource
     {
-        public String Token { get; set; }
+        private const string PeccoPaymentUrl = "/payment/pecco/auth";
+
+        public string Token { get; set; }
 
         public static PeccoPayment Create(CreatePeccoPaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<PeccoPayment>(options.BaseUrl + "/payment/pecco/auth", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<PeccoPayment> CreateAsync(CreatePeccoPaymentRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

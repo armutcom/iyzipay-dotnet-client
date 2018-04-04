@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Armut.Iyzipay.Tests.Functional.Util
 {
-    public class RandomGenerator
+    public static class RandomGenerator
     {
         private static readonly Random Random = new Random();
         private const int IdLength = 11;

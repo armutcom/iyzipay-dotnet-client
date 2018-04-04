@@ -2,14 +2,14 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class UpdateSubMerchantRequestBuilder : BaseRequestBuilder
+    public sealed class UpdateSubMerchantRequestBuilder : BaseRequestBuilder<UpdateSubMerchantRequest>
     {
         private string _name = "John's market";
         private string _email = "email@submerchantemail.com";
         private string _gsmNumber = "+905350000000";
         private string _address = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
         private string _iban = "TR180006200119000006672315";
-        private string _currency = global::Armut.Iyzipay.Model.Currency.TRY.ToString();
+        private string _currency = Model.Currency.TRY.ToString();
         private string _taxOffice;
         private string _contactName;
         private string _contactSurname;
@@ -112,25 +112,27 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public UpdateSubMerchantRequest Build()
+        public override UpdateSubMerchantRequest Build()
         {
-            UpdateSubMerchantRequest updateSubMerchantRequest = new UpdateSubMerchantRequest();
-            updateSubMerchantRequest.Locale = Locale;
-            updateSubMerchantRequest.ConversationId = ConversationId;
-            updateSubMerchantRequest.Name = _name;
-            updateSubMerchantRequest.Email = _email;
-            updateSubMerchantRequest.GsmNumber = _gsmNumber;
-            updateSubMerchantRequest.Address = _address;
-            updateSubMerchantRequest.Iban = _iban;
-            updateSubMerchantRequest.TaxOffice = _taxOffice;
-            updateSubMerchantRequest.ContactName = _contactName;
-            updateSubMerchantRequest.ContactSurname = _contactSurname;
-            updateSubMerchantRequest.LegalCompanyTitle = _legalCompanyTitle;
-            updateSubMerchantRequest.SubMerchantKey = _subMerchantKey;
-            updateSubMerchantRequest.IdentityNumber = _identityNumber;
-            updateSubMerchantRequest.TaxNumber = _taxNumber;
-            updateSubMerchantRequest.Currency = _currency;
-            updateSubMerchantRequest.SwiftCode = _swiftCode;
+            UpdateSubMerchantRequest updateSubMerchantRequest = new UpdateSubMerchantRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                Name = _name,
+                Email = _email,
+                GsmNumber = _gsmNumber,
+                Address = _address,
+                Iban = _iban,
+                TaxOffice = _taxOffice,
+                ContactName = _contactName,
+                ContactSurname = _contactSurname,
+                LegalCompanyTitle = _legalCompanyTitle,
+                SubMerchantKey = _subMerchantKey,
+                IdentityNumber = _identityNumber,
+                TaxNumber = _taxNumber,
+                Currency = _currency,
+                SwiftCode = _swiftCode
+            };
             return updateSubMerchantRequest;
         }
     }

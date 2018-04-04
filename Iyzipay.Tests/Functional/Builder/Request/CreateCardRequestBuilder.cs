@@ -3,7 +3,7 @@ using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class CreateCardRequestBuilder : BaseRequestBuilder
+    public sealed class CreateCardRequestBuilder : BaseRequestBuilder<CreateCardRequest>
     {
         private string _email;
         private string _cardUserKey;
@@ -43,15 +43,17 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreateCardRequest Build()
+        public override CreateCardRequest Build()
         {
-            CreateCardRequest createCardRequest = new CreateCardRequest();
-            createCardRequest.Locale = Locale;
-            createCardRequest.ConversationId = ConversationId;
-            createCardRequest.ExternalId = _externalId;
-            createCardRequest.Email = _email;
-            createCardRequest.CardUserKey = _cardUserKey;
-            createCardRequest.Card = _card;
+            CreateCardRequest createCardRequest = new CreateCardRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                ExternalId = _externalId,
+                Email = _email,
+                CardUserKey = _cardUserKey,
+                Card = _card
+            };
             return createCardRequest;
         }
     }

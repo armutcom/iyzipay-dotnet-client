@@ -1,16 +1,23 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class CheckoutForm : PaymentResource
     {
-        public String Token { get; set; }
-        public String CallbackUrl { get; set; }      
+        private const string CheckoutFormUrl = "/payment/iyzipos/checkoutform/auth/ecom/detail";
+
+        public string Token { get; set; }
+        public string CallbackUrl { get; set; }      
 
         public static CheckoutForm Retrieve(RetrieveCheckoutFormRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<CheckoutForm>(options.BaseUrl + "/payment/iyzipos/checkoutform/auth/ecom/detail", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<CheckoutForm> RetrieveAsync(RetrieveCheckoutFormRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

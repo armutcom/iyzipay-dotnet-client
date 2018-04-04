@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
@@ -7,17 +8,19 @@ namespace Armut.Iyzipay.Samples
     public class InstallmentSample : Sample
     {
         [Test]
-        public void Should_Retrieve_Installments()
+        public async Task Should_Retrieve_Installments()
         {
-            RetrieveInstallmentInfoRequest request = new RetrieveInstallmentInfoRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.BinNumber = "554960";
-            request.Price = "100";
+            RetrieveInstallmentInfoRequest request = new RetrieveInstallmentInfoRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                BinNumber = "554960",
+                Price = "100"
+            };
 
-            InstallmentInfo installmentInfo = InstallmentInfo.Retrieve(request, options);
+            InstallmentInfo installmentInfo = await InstallmentInfo.RetrieveAsync(request, Options);
 
-            PrintResponse<InstallmentInfo>(installmentInfo);
+            PrintResponse(installmentInfo);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), installmentInfo.Status);
             Assert.AreEqual(Locale.TR.ToString(), installmentInfo.Locale);

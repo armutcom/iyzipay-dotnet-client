@@ -1,4 +1,6 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
@@ -10,7 +12,7 @@ namespace Armut.Iyzipay.Tests.Functional
     public class CardStorageTest : BaseTest
     {
         [Test]
-        public void Should_Create_User_And_Add_Card()
+        public async Task Should_Create_User_And_Add_Card()
         {
             string externalUserId = RandomGenerator.RandomId;
             CardInformation cardInformation = CardInformationBuilder
@@ -23,7 +25,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .Email("email@email.com")
                 .Build();
 
-            Card card = Card.Create(createCardRequest, Options);
+            Card card = await Card.CreateAsync(createCardRequest, Options);
 
             PrintResponse(card);
 
@@ -42,7 +44,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Create_Card_And_Add_Card_To_Existing_User()
+        public async Task Should_Create_Card_And_Add_Card_To_Existing_User()
         {
             string externalUserId = RandomGenerator.RandomId;
             CardInformation cardInformation = CardInformationBuilder.Create()
@@ -54,7 +56,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .Email("email@email.com")
                 .Build();
 
-            Card firstCard = Card.Create(cardRequest, Options);
+            Card firstCard = await Card.CreateAsync(cardRequest, Options);
             string cardUserKey = firstCard.CardUserKey;
 
             CreateCardRequest request = CreateCardRequestBuilder.Create()
@@ -63,7 +65,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .ExternalId(externalUserId)
                 .Build();
 
-            Card card = Card.Create(request, Options);
+            Card card = await Card.CreateAsync(request, Options);
 
             PrintResponse(card);
 
@@ -82,15 +84,17 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Delete_Card()
+        public async Task Should_Delete_Card()
         {
-            Card card = CreateCard();
+            Card card = await CreateCard();
 
-            DeleteCardRequest deleteCardRequest = new DeleteCardRequest();
-            deleteCardRequest.CardToken = card.CardToken;
-            deleteCardRequest.CardUserKey = card.CardUserKey;
+            DeleteCardRequest deleteCardRequest = new DeleteCardRequest
+            {
+                CardToken = card.CardToken,
+                CardUserKey = card.CardUserKey
+            };
 
-            Card deletedCard = Card.Delete(deleteCardRequest, Options);
+            Card deletedCard = await Card.DeleteAsync(deleteCardRequest, Options);
 
             PrintResponse(deletedCard);
 
@@ -114,16 +118,18 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Chould_Retrieve_Card()
+        public async Task Chould_Retrieve_Card()
         {
-            Card card = CreateCard();
+            Card card = await CreateCard();
 
-            RetrieveCardListRequest request = new RetrieveCardListRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.CardUserKey = card.CardUserKey;
+            RetrieveCardListRequest request = new RetrieveCardListRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                CardUserKey = card.CardUserKey
+            };
 
-            CardList cardList = CardList.Retrieve(request, Options);
+            CardList cardList = await CardList.RetrieveAsync(request, Options);
 
             PrintResponse(cardList);
 
@@ -139,7 +145,7 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.NotNull(cardList.CardUserKey);
         }
 
-        private Card CreateCard()
+        private async Task<Card> CreateCard()
         {
             CardInformation cardInformation = CardInformationBuilder.Create()
                 .Build();
@@ -149,7 +155,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .Email("email@email.com")
                 .Build();
 
-            return Card.Create(cardRequest, Options);
+            return await Card.CreateAsync(cardRequest, Options);
         }
     }
 }

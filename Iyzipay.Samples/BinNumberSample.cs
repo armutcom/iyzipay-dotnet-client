@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
@@ -7,16 +8,18 @@ namespace Armut.Iyzipay.Samples
     public class BinNumberSample : Sample
     {
         [Test]
-        public void Should_Retrieve_Bin_Number()
+        public async Task Should_Retrieve_Bin_Number()
         {
-            RetrieveBinNumberRequest request = new RetrieveBinNumberRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.BinNumber = "554960";
+            RetrieveBinNumberRequest request = new RetrieveBinNumberRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                BinNumber = "554960"
+            };
 
-            BinNumber binNumber = BinNumber.Retrieve(request, options);
+            BinNumber binNumber = await BinNumber.RetrieveAsync(request, Options);
 
-            PrintResponse<BinNumber>(binNumber);
+            PrintResponse(binNumber);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), binNumber.Status);
             Assert.AreEqual(Locale.TR.ToString(), binNumber.Locale);

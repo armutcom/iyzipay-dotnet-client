@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
@@ -8,82 +9,96 @@ namespace Armut.Iyzipay.Samples
     public class PeccoSample : Sample
     {
         [Test]
-        public void Should_Initialize_Pecco()
+        public async Task Should_Initialize_Pecco()
         {
-            CreatePeccoInitializeRequest request = new CreatePeccoInitializeRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.Price = "100000";
-            request.PaidPrice = "120000";
-            request.Currency = Currency.IRR.ToString();
-            request.BasketId = "B67832";
-            request.PaymentGroup = PaymentGroup.PRODUCT.ToString();
-            request.CallbackUrl = "https://www.merchant.com/callback";
-            
-            Buyer buyer = new Buyer();
-            buyer.Id = "BY789";
-            buyer.Name = "John";
-            buyer.Surname = "Doe";
-            buyer.GsmNumber = "+905350000000";
-            buyer.Email = "email@email.com";
-            buyer.IdentityNumber = "74300864791";
-            buyer.LastLoginDate = "2015-10-05 12:43:35";
-            buyer.RegistrationDate = "2013-04-21 15:12:09";
-            buyer.RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            buyer.Ip = "85.34.78.112";
-            buyer.City = "Istanbul";
-            buyer.Country = "Turkey";
-            buyer.ZipCode = "34732";
+            CreatePeccoInitializeRequest request = new CreatePeccoInitializeRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                Price = "100000",
+                PaidPrice = "120000",
+                Currency = Currency.IRR.ToString(),
+                BasketId = "B67832",
+                PaymentGroup = PaymentGroup.PRODUCT.ToString(),
+                CallbackUrl = "https://www.merchant.com/callback"
+            };
+
+            Buyer buyer = new Buyer
+            {
+                Id = "BY789",
+                Name = "John",
+                Surname = "Doe",
+                GsmNumber = "+905350000000",
+                Email = "email@email.com",
+                IdentityNumber = "74300864791",
+                LastLoginDate = "2015-10-05 12:43:35",
+                RegistrationDate = "2013-04-21 15:12:09",
+                RegistrationAddress = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1",
+                Ip = "85.34.78.112",
+                City = "Istanbul",
+                Country = "Turkey",
+                ZipCode = "34732"
+            };
             request.Buyer = buyer;
 
-            Address shippingAddress = new Address();
-            shippingAddress.ContactName = "Jane Doe";
-            shippingAddress.City = "Istanbul";
-            shippingAddress.Country = "Turkey";
-            shippingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            shippingAddress.ZipCode = "34742";
+            Address shippingAddress = new Address
+            {
+                ContactName = "Jane Doe",
+                City = "Istanbul",
+                Country = "Turkey",
+                Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1",
+                ZipCode = "34742"
+            };
             request.ShippingAddress = shippingAddress;
 
-            Address billingAddress = new Address();
-            billingAddress.ContactName = "Jane Doe";
-            billingAddress.City = "Istanbul";
-            billingAddress.Country = "Turkey";
-            billingAddress.Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
-            billingAddress.ZipCode = "34742";
+            Address billingAddress = new Address
+            {
+                ContactName = "Jane Doe",
+                City = "Istanbul",
+                Country = "Turkey",
+                Description = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1",
+                ZipCode = "34742"
+            };
             request.BillingAddress = billingAddress;
 
             List<BasketItem> basketItems = new List<BasketItem>();
-            BasketItem firstBasketItem = new BasketItem();
-            firstBasketItem.Id = "BI101";
-            firstBasketItem.Name = "Binocular";
-            firstBasketItem.Category1 = "Collectibles";
-            firstBasketItem.Category2 = "Accessories";
-            firstBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-            firstBasketItem.Price = "30000";
+            BasketItem firstBasketItem = new BasketItem
+            {
+                Id = "BI101",
+                Name = "Binocular",
+                Category1 = "Collectibles",
+                Category2 = "Accessories",
+                ItemType = BasketItemType.PHYSICAL.ToString(),
+                Price = "30000"
+            };
             basketItems.Add(firstBasketItem);
 
-            BasketItem secondBasketItem = new BasketItem();
-            secondBasketItem.Id = "BI102";
-            secondBasketItem.Name = "Game code";
-            secondBasketItem.Category1 = "Game";
-            secondBasketItem.Category2 = "Online Game Items";
-            secondBasketItem.ItemType = BasketItemType.VIRTUAL.ToString();
-            secondBasketItem.Price = "50000";
+            BasketItem secondBasketItem = new BasketItem
+            {
+                Id = "BI102",
+                Name = "Game code",
+                Category1 = "Game",
+                Category2 = "Online Game Items",
+                ItemType = BasketItemType.VIRTUAL.ToString(),
+                Price = "50000"
+            };
             basketItems.Add(secondBasketItem);
 
-            BasketItem thirdBasketItem = new BasketItem();
-            thirdBasketItem.Id = "BI103";
-            thirdBasketItem.Name = "Usb";
-            thirdBasketItem.Category1 = "Electronics";
-            thirdBasketItem.Category2 = "Usb / Cable";
-            thirdBasketItem.ItemType = BasketItemType.PHYSICAL.ToString();
-            thirdBasketItem.Price = "20000";
+            BasketItem thirdBasketItem = new BasketItem
+            {
+                Id = "BI103",
+                Name = "Usb",
+                Category1 = "Electronics",
+                Category2 = "Usb / Cable",
+                ItemType = BasketItemType.PHYSICAL.ToString(),
+                Price = "20000"
+            };
             basketItems.Add(thirdBasketItem);
             request.BasketItems = basketItems;
 
-            PeccoInitialize peccoInitialize = PeccoInitialize.Create(request, options);
+            PeccoInitialize peccoInitialize = await PeccoInitialize.CreateAsync(request, Options);
 
-            PrintResponse<PeccoInitialize>(peccoInitialize);
+            PrintResponse(peccoInitialize);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), peccoInitialize.Status);
             Assert.AreEqual(Locale.TR.ToString(), peccoInitialize.Locale);
@@ -96,16 +111,18 @@ namespace Armut.Iyzipay.Samples
         }
 
         [Test]
-        public void Should_Create_Pecco_Payment()
+        public async Task Should_Create_Pecco_Payment()
         {
-            CreatePeccoPaymentRequest request = new CreatePeccoPaymentRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.Token = "token";
+            CreatePeccoPaymentRequest request = new CreatePeccoPaymentRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                Token = "token"
+            };
 
-            PeccoPayment peccoPayment = PeccoPayment.Create(request, options);
+            PeccoPayment peccoPayment = await PeccoPayment.CreateAsync(request, Options);
 
-            PrintResponse<PeccoPayment>(peccoPayment);
+            PrintResponse(peccoPayment);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), peccoPayment.Status);
             Assert.AreEqual(Locale.TR.ToString(), peccoPayment.Locale);

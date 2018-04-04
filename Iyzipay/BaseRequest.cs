@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Armut.Iyzipay
+﻿namespace Armut.Iyzipay
 {
     public class BaseRequest : RequestStringConvertible
     {
-        public String Locale { get; set; }
-        public String ConversationId { get; set; }
+        public string Locale { get; set; }
+        public string ConversationId { get; set; }
 
-        public virtual String ToPKIRequestString()
+        public virtual string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .Append("locale", Locale)

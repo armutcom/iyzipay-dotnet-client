@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class CreateApprovalRequestBuilder : BaseRequestBuilder
+    public sealed class CreateApprovalRequestBuilder : BaseRequestBuilder<CreateApprovalRequest>
     {
         private string _paymentTransactionId;
 
@@ -22,12 +22,14 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreateApprovalRequest Build()
+        public override CreateApprovalRequest Build()
         {
-            CreateApprovalRequest createApprovalRequest = new CreateApprovalRequest();
-            createApprovalRequest.Locale = Locale;
-            createApprovalRequest.ConversationId =  ConversationId;
-            createApprovalRequest.PaymentTransactionId = _paymentTransactionId;
+            CreateApprovalRequest createApprovalRequest = new CreateApprovalRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                PaymentTransactionId = _paymentTransactionId
+            };
             return createApprovalRequest;
         }
     }

@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
     public sealed class RefundReason
     {
-        private readonly String value;
+        private readonly string value;
 
         public static readonly RefundReason DOUBLE_PAYMENT = new RefundReason("double_payment");
         public static readonly RefundReason BUYER_REQUEST = new RefundReason("buyer_request");
         public static readonly RefundReason FRAUD = new RefundReason("fraud");
         public static readonly RefundReason OTHER = new RefundReason("other");
 
-        private RefundReason(String value)
+        private RefundReason(string value)
         {
             this.value = value;
         }

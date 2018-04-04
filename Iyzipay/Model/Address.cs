@@ -1,18 +1,17 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Armut.Iyzipay.Model
 {
     public class Address : RequestStringConvertible
     {
         [JsonProperty(PropertyName = "Address")]
-        public String Description { get; set; }
-        public String ZipCode { get; set; }
-        public String ContactName { get; set; }
-        public String City { get; set; }
-        public String Country { get; set; }
+        public string Description { get; set; }
+        public string ZipCode { get; set; }
+        public string ContactName { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
 
-        public String ToPKIRequestString()
+        public string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .Append("address", Description)

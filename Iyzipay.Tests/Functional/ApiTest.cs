@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using NUnit.Framework;
 
 namespace Armut.Iyzipay.Tests.Functional
@@ -6,9 +7,9 @@ namespace Armut.Iyzipay.Tests.Functional
     public class ApiTest : BaseTest
     {
         [Test]
-        public void Should_Test_Api()
+        public async Task Should_Test_Api()
         {
-            IyzipayResource iyzipayResource = global::Armut.Iyzipay.Model.ApiTest.Retrieve(Options);
+            IyzipayResource iyzipayResource = await Model.ApiTest.RetrieveAsync(Options);
 
             PrintResponse(iyzipayResource);
 

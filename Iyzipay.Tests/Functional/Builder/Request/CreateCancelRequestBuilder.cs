@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class CreateCancelRequestBuilder
+    public sealed class CreateCancelRequestBuilder : BaseRequestBuilder<CreateCancelRequest>
     {
         private string _paymentId;
         private string _ip = "85.34.78.112";
@@ -28,11 +28,13 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreateCancelRequest Build()
+        public override CreateCancelRequest Build()
         {
-            CreateCancelRequest cancelRequest = new CreateCancelRequest();
-            cancelRequest.PaymentId = _paymentId;
-            cancelRequest.Ip = _ip;
+            CreateCancelRequest cancelRequest = new CreateCancelRequest
+            {
+                PaymentId = _paymentId,
+                Ip = _ip
+            };
             return cancelRequest;
         }
     }

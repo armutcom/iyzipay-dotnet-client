@@ -1,15 +1,22 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class Approval : IyzipayResource
     {
-        public String PaymentTransactionId { get; set; }
+        private const string ApprovalUrl = "/payment/iyzipos/item/approve";
+
+        public string PaymentTransactionId { get; set; }
 
         public static Approval Create(CreateApprovalRequest request, Options options)
         {
-            return  RestHttpClient.Create().Post<Approval>(options.BaseUrl + "/payment/iyzipos/item/approve", GetHttpHeaders(request, options), request);
+            return  RestHttpClient.Create().Post<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<Approval> CreateAsync(CreateApprovalRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

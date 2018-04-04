@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class RetrieveSubMerchantRequestBuilder : BaseRequestBuilder
+    public sealed class RetrieveSubMerchantRequestBuilder : BaseRequestBuilder<RetrieveSubMerchantRequest>
     {
         private string _subMerchantExternalId;
 
@@ -21,12 +21,14 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public RetrieveSubMerchantRequest Build()
+        public override RetrieveSubMerchantRequest Build()
         {
-            RetrieveSubMerchantRequest retrieveSubMerchantRequest = new RetrieveSubMerchantRequest();
-            retrieveSubMerchantRequest.Locale = Locale;
-            retrieveSubMerchantRequest.ConversationId = ConversationId;
-            retrieveSubMerchantRequest.SubMerchantExternalId = _subMerchantExternalId;
+            RetrieveSubMerchantRequest retrieveSubMerchantRequest = new RetrieveSubMerchantRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                SubMerchantExternalId = _subMerchantExternalId
+            };
             return retrieveSubMerchantRequest;
         }
     }

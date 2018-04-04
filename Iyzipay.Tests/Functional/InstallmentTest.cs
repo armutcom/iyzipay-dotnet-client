@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
@@ -7,15 +8,17 @@ namespace Armut.Iyzipay.Tests.Functional
     public class InstallmentTest : BaseTest
     {
         [Test]
-        public void Should_Retrieve_Installments()
+        public async Task Should_Retrieve_Installments()
         {
-            RetrieveInstallmentInfoRequest request = new RetrieveInstallmentInfoRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.BinNumber = "554960";
-            request.Price = "100";
+            RetrieveInstallmentInfoRequest request = new RetrieveInstallmentInfoRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                BinNumber = "554960",
+                Price = "100"
+            };
 
-            InstallmentInfo installmentInfo = InstallmentInfo.Retrieve(request, Options);
+            InstallmentInfo installmentInfo = await InstallmentInfo.RetrieveAsync(request, Options);
 
             PrintResponse(installmentInfo);
 

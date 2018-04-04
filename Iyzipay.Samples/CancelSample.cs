@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using NUnit.Framework;
 
@@ -7,17 +8,19 @@ namespace Armut.Iyzipay.Samples
     public class CancelSample : Sample
     {
         [Test]
-        public void Should_Cancel_Payment()
+        public async Task Should_Cancel_Payment()
         {
-            CreateCancelRequest request = new CreateCancelRequest();
-            request.ConversationId = "123456789";
-            request.Locale = Locale.TR.ToString();
-            request.PaymentId = "1";
-            request.Ip = "85.34.78.112";
+            CreateCancelRequest request = new CreateCancelRequest
+            {
+                ConversationId = "123456789",
+                Locale = Locale.TR.ToString(),
+                PaymentId = "1",
+                Ip = "85.34.78.112"
+            };
 
-            Cancel cancel = Cancel.Create(request, options);
+            Cancel cancel = await Cancel.CreateAsync(request, Options);
 
-            PrintResponse<Cancel>(cancel);
+            PrintResponse(cancel);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), cancel.Status);
             Assert.AreEqual(Locale.TR.ToString(), cancel.Locale);
@@ -29,19 +32,21 @@ namespace Armut.Iyzipay.Samples
         }
 
         [Test]
-        public void Should_Cancel_Payment_With_Reason_And_Description()
+        public async Task Should_Cancel_Payment_With_Reason_And_Description()
         {
-            CreateCancelRequest request = new CreateCancelRequest();
-            request.ConversationId = "123456789";
-            request.Locale = Locale.TR.ToString();
-            request.PaymentId = "1";
-            request.Ip = "85.34.78.112";
-            request.Reason = RefundReason.OTHER.ToString();
-            request.Description = "customer requested for default sample";
+            CreateCancelRequest request = new CreateCancelRequest
+            {
+                ConversationId = "123456789",
+                Locale = Locale.TR.ToString(),
+                PaymentId = "1",
+                Ip = "85.34.78.112",
+                Reason = RefundReason.OTHER.ToString(),
+                Description = "customer requested for default sample"
+            };
 
-            Cancel cancel = Cancel.Create(request, options);
+            Cancel cancel = await Cancel.CreateAsync(request, Options);
 
-            PrintResponse<Cancel>(cancel);
+            PrintResponse(cancel);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), cancel.Status);
             Assert.AreEqual(Locale.TR.ToString(), cancel.Locale);

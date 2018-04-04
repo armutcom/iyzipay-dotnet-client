@@ -1,12 +1,20 @@
-﻿using Armut.Iyzipay.Request;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class BasicPaymentPostAuth : BasicPaymentResource
-    {        
+    {
+        private const string BasicPaymentPostAuthUrl = "/payment/postauth/basic";
+
         public static BasicPaymentPostAuth Create(CreatePaymentPostAuthRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BasicPaymentPostAuth>(options.BaseUrl + "/payment/postauth/basic", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<BasicPaymentPostAuth>(options.BaseUrl + BasicPaymentPostAuthUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<BasicPaymentPostAuth> CreateAsync(CreatePaymentPostAuthRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<BasicPaymentPostAuth>(options.BaseUrl + BasicPaymentPostAuthUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

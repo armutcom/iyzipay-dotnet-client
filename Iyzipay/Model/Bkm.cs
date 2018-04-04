@@ -1,16 +1,23 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class Bkm : PaymentResource
     {
-        public String Token { get; set; }
-        public String CallbackUrl { get; set; }     
+        private const string BkmUrl = "/payment/bkm/auth/detail";
+
+        public string Token { get; set; }
+        public string CallbackUrl { get; set; }     
 
         public static Bkm Retrieve(RetrieveBkmRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Bkm>(options.BaseUrl + "/payment/bkm/auth/detail", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<Bkm>(options.BaseUrl + BkmUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<Bkm> RetrieveAsync(RetrieveBkmRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<Bkm>(options.BaseUrl + BkmUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

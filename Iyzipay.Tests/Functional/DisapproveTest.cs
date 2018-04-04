@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
@@ -9,29 +9,29 @@ namespace Armut.Iyzipay.Tests.Functional
     public class DisapproveTest : BaseTest
     {
         [Test]
-        public void Should_Disapprove_Payment()
+        public async Task Should_Disapprove_Payment()
         {
             CreateSubMerchantRequest request = CreateSubMerchantRequestBuilder.Create()
                 .PersonalSubMerchantRequest()
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Create(request, Options);
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(request, Options);
 
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .MarketplacePayment(subMerchant.SubMerchantKey)
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
 
-            String paymentTransactionId = payment.PaymentItems[0].PaymentTransactionId;
+            string paymentTransactionId = payment.PaymentItems[0].PaymentTransactionId;
 
             CreateApprovalRequest approvalRequest = CreateApprovalRequestBuilder.Create()
                 .PaymentTransactionId(paymentTransactionId)
                 .Build();
 
-            Approval.Create(approvalRequest, Options);
+            await Approval.CreateAsync(approvalRequest, Options);
 
-            Disapproval disapproval = Disapproval.Create(approvalRequest, Options);
+            Disapproval disapproval = await Disapproval.CreateAsync(approvalRequest, Options);
 
             PrintResponse(disapproval);
 

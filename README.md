@@ -1,26 +1,36 @@
 # iyzipay-dotnet
 
-[![Build Status](https://travis-ci.org/iyzico/iyzipay-dotnet.svg?branch=master)](https://travis-ci.org/iyzico/iyzipay-dotnet)
-[![NuGet](https://img.shields.io/nuget/v/Iyzipay.svg)](https://www.nuget.org/packages/Iyzipay/)
+[![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/iyzico/iyzipay-dotnet)
+[![NuGet](https://img.shields.io/nuget/v/Armut.Iyzipay.svg)](https://www.nuget.org/packages/Iyzipay/)
+
+Unofficial Iyzipay client library that maintained by [Armut.com](https://armut.com/), fork of the [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet)
+
+Supports .NET Framework, .NET Core 1.1 and .NET Core 2.0 runtimes,
 
 You can sign up for an iyzico account at https://iyzico.com
 
 # Requirements
 
-.NET Framework 4.5 and later
+.NET Framework 4.5 and later or .NET Core 1.1 or .NET Core 2.0
 
 # Installation
 
 For now you'll need to install following libraries:
 
-* To install Iyzipay, run the following command in the Package Manager Console
+* To install Armut.Iyzipay, run the following command in the Package Manager Console
 ```
-Install-Package Iyzipay
+Install-Package Armut.Iyzipay
 ```
- Or you can download the latest .dll from:  https://github.com/iyzico/iyzipay-dotnet/releases/latest
  
-* Newtonsoft.Json 8.0.2 from http://www.newtonsoft.com/json#
+# Relation To Official Iyzipay
 
+This client library is a fork of [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet). The following improvments have been made:
+
+- Unit tests in [iyipay-java](https://github.com/iyzico/iyzipay-java) library have been adapted to C#.
+- Supported .NET Core 1.1 and .NET Core 2.0 by converting the client library to .NET Standard.
+- Async support provided.
+- Instead of creating a new 'HttpClient' in each request, the shared 'HttpClient' has been used.
+- Refactoring done according to C# coding standards.
 
 # Usage
 

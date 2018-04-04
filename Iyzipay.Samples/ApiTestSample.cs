@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using NUnit.Framework;
 
 namespace Armut.Iyzipay.Samples
@@ -6,11 +7,11 @@ namespace Armut.Iyzipay.Samples
     public class ApiTestSample : Sample
     {
         [Test]
-        public void Should_Test_Api()
+        public async Task Should_Test_Api()
         {
-            IyzipayResource iyzipayResource = ApiTest.Retrieve(options);
+            IyzipayResource iyzipayResource = await ApiTest.RetrieveAsync(Options);
 
-            PrintResponse<IyzipayResource>(iyzipayResource);
+            PrintResponse(iyzipayResource);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), iyzipayResource.Status);
             Assert.AreEqual(Locale.TR.ToString(), iyzipayResource.Locale);

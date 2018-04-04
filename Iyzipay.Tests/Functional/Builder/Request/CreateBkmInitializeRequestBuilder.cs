@@ -5,10 +5,10 @@ using Armut.Iyzipay.Tests.Functional.Util;
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class CreateBkmInitializeRequestBuilder : BaseRequestBuilder
+    public sealed class CreateBkmInitializeRequestBuilder : BaseRequestBuilder<CreateBkmInitializeRequest>
     {
         private string _basketId = RandomGenerator.RandomId;
-        private string _paymentGroup = global::Armut.Iyzipay.Model.PaymentGroup.LISTING.ToString();
+        private string _paymentGroup = Model.PaymentGroup.LISTING.ToString();
         private Buyer _buyer = BuyerBuilder.Create().Build();
         private Address _shippingAddress = AddressBuilder.Create().Build();
         private Address _billingAddress = AddressBuilder.Create().Build();
@@ -80,20 +80,22 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreateBkmInitializeRequest Build()
+        public override CreateBkmInitializeRequest Build()
         {
-            CreateBkmInitializeRequest createBkmInitializeRequest = new CreateBkmInitializeRequest();
-            createBkmInitializeRequest.Locale = Locale;
-            createBkmInitializeRequest.ConversationId = ConversationId;
-            createBkmInitializeRequest.Price = _price;
-            createBkmInitializeRequest.BasketId = _basketId;
-            createBkmInitializeRequest.PaymentGroup = _paymentGroup;
-            createBkmInitializeRequest.PaymentSource = _paymentSource;
-            createBkmInitializeRequest.Buyer = _buyer;
-            createBkmInitializeRequest.ShippingAddress = _shippingAddress;
-            createBkmInitializeRequest.BillingAddress = _billingAddress;
-            createBkmInitializeRequest.BasketItems = _basketItems;
-            createBkmInitializeRequest.CallbackUrl = _callbackUrl;
+            CreateBkmInitializeRequest createBkmInitializeRequest = new CreateBkmInitializeRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                Price = _price,
+                BasketId = _basketId,
+                PaymentGroup = _paymentGroup,
+                PaymentSource = _paymentSource,
+                Buyer = _buyer,
+                ShippingAddress = _shippingAddress,
+                BillingAddress = _billingAddress,
+                BasketItems = _basketItems,
+                CallbackUrl = _callbackUrl
+            };
             return createBkmInitializeRequest;
         }
     }

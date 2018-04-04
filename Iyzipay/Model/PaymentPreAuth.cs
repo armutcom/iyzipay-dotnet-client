@@ -1,17 +1,31 @@
-﻿using Armut.Iyzipay.Request;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Request;
 
 namespace Armut.Iyzipay.Model
 {
     public class PaymentPreAuth : PaymentResource
     {
+        private const string PaymentPreAuthCreateUrl = "/payment/preauth";
+        private const string PaymentPreAuthRetrieveUrl = "/payment/detail";
+
         public static PaymentPreAuth Create(CreatePaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<PaymentPreAuth>(options.BaseUrl + "/payment/preauth", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<PaymentPreAuth>(options.BaseUrl + PaymentPreAuthCreateUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<PaymentPreAuth> CreateAsync(CreatePaymentRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<PaymentPreAuth>(options.BaseUrl + PaymentPreAuthCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static PaymentPreAuth Retrieve(RetrievePaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<PaymentPreAuth>(options.BaseUrl + "/payment/detail", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<PaymentPreAuth>(options.BaseUrl + PaymentPreAuthRetrieveUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<PaymentPreAuth> RetrieveAsync(RetrievePaymentRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<PaymentPreAuth>(options.BaseUrl + PaymentPreAuthRetrieveUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

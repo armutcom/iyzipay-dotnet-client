@@ -1,13 +1,11 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
   public  class BkmInstallmentPrice : RequestStringConvertible
     {
         public int? InstallmentNumber { get; set; }
-        public String TotalPrice { get; set; }
+        public string TotalPrice { get; set; }
 
-        public String ToPKIRequestString()
+        public string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .Append("installmentNumber", InstallmentNumber)

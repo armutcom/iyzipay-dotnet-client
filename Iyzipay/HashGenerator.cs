@@ -10,7 +10,7 @@ namespace Armut.Iyzipay
         {
         }
 
-        public static String GenerateHash(String apiKey, String secretKey, String randomString, BaseRequest request)
+        public static string GenerateHash(string apiKey, string secretKey, string randomString, BaseRequest request)
         {
 #if NETSTANDARD
             SHA1 algorithm = SHA1.Create();

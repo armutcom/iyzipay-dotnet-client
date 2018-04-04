@@ -1,15 +1,13 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Request
+﻿namespace Armut.Iyzipay.Request
 {
     public class CreateCancelRequest : BaseRequest
     {
-        public String PaymentId { get; set; }
-        public String Ip { get; set; }
-        public String Reason { get; set; }
-        public String Description { get; set; }
+        public string PaymentId { get; set; }
+        public string Ip { get; set; }
+        public string Reason { get; set; }
+        public string Description { get; set; }
 
-        public override String ToPKIRequestString()
+        public override string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .AppendSuper(base.ToPKIRequestString())

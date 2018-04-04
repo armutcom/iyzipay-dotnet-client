@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using NUnit.Framework;
@@ -8,7 +9,7 @@ namespace Armut.Iyzipay.Tests.Functional
     public class PeccoTest : BaseTest
     {
         [Test]
-        public void Should_Initialize_Pecco()
+        public async Task Should_Initialize_Pecco()
         {
             CreatePeccoInitializeRequest request = CreatePeccoInitializeRequestBuilder.Create()
                 .CallbackUrl("https://www.merchant.com/callback")
@@ -17,7 +18,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .PaidPrice("10")
                 .Build();
 
-            PeccoInitialize peccoInitialize = PeccoInitialize.Create(request, Options);
+            PeccoInitialize peccoInitialize = await PeccoInitialize.CreateAsync(request, Options);
 
             PrintResponse(peccoInitialize);
 
@@ -34,7 +35,7 @@ namespace Armut.Iyzipay.Tests.Functional
             This test needs manual payment from Pecco on sandbox environment. So it does not contain any assertions.
         */
         [Test]
-        public void Should_Create_Pecco_Payment()
+        public async Task Should_Create_Pecco_Payment()
         {
             CreatePeccoInitializeRequest request = CreatePeccoInitializeRequestBuilder.Create()
                 .CallbackUrl("https://www.merchant.com/callback")
@@ -43,7 +44,9 @@ namespace Armut.Iyzipay.Tests.Functional
                 .PaidPrice("10")
                 .Build();
 
-            string token = PeccoInitialize.Create(request, Options).Token;
+            var peccoInitialize = await PeccoInitialize.CreateAsync(request, Options);
+
+            string token = peccoInitialize.Token;
 
             CreatePeccoPaymentRequest peccoPaymentRequest = CreatePeccoPaymentRequestBuilder.Create()
                 .Token(token)

@@ -5,9 +5,9 @@ using Armut.Iyzipay.Tests.Functional.Util;
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public class CreatePeccoInitializeRequestBuilder : BaseRequestBuilder
+    public class CreatePeccoInitializeRequestBuilder : BaseRequestBuilder<CreatePeccoInitializeRequest>
     {
-        private string _currency = global::Armut.Iyzipay.Model.Currency.IRR.ToString();
+        private string _currency = Model.Currency.IRR.ToString();
         private string _basketId = RandomGenerator.RandomId;
         private string _paymentGroup;
         private Buyer _buyer = BuyerBuilder.Create().Build();
@@ -94,22 +94,25 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreatePeccoInitializeRequest Build()
+        public override CreatePeccoInitializeRequest Build()
         {
-            CreatePeccoInitializeRequest createPeccoInitializeRequest = new CreatePeccoInitializeRequest();
-            createPeccoInitializeRequest.Locale = Locale;
-            createPeccoInitializeRequest.ConversationId = ConversationId;
-            createPeccoInitializeRequest.Price = _price;
-            createPeccoInitializeRequest.PaidPrice = _paidPrice;
-            createPeccoInitializeRequest.Currency = _currency;
-            createPeccoInitializeRequest.BasketId = _basketId;
-            createPeccoInitializeRequest.PaymentGroup = _paymentGroup;
-            createPeccoInitializeRequest.PaymentSource = _paymentSource;
-            createPeccoInitializeRequest.Buyer = _buyer;
-            createPeccoInitializeRequest.ShippingAddress = _shippingAddress;
-            createPeccoInitializeRequest.BillingAddress = _billingAddress;
-            createPeccoInitializeRequest.BasketItems = _basketItems;
-            createPeccoInitializeRequest.CallbackUrl = _callbackUrl;
+            CreatePeccoInitializeRequest createPeccoInitializeRequest =
+                new CreatePeccoInitializeRequest
+                {
+                    Locale = Locale,
+                    ConversationId = ConversationId,
+                    Price = _price,
+                    PaidPrice = _paidPrice,
+                    Currency = _currency,
+                    BasketId = _basketId,
+                    PaymentGroup = _paymentGroup,
+                    PaymentSource = _paymentSource,
+                    Buyer = _buyer,
+                    ShippingAddress = _shippingAddress,
+                    BillingAddress = _billingAddress,
+                    BasketItems = _basketItems,
+                    CallbackUrl = _callbackUrl
+                };
             return createPeccoInitializeRequest;
         }
     }

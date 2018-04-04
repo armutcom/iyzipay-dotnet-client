@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace Armut.Iyzipay
 {
     public class RestHttpClient
     {
+        private static readonly HttpClient HttpClient;
+
         static RestHttpClient()
         {
 #if !NETSTANDARD
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 #endif
+            HttpClient = new HttpClient();
+        }
+
+        private RestHttpClient()
+        {
         }
 
         public static RestHttpClient Create()
@@ -19,63 +27,91 @@ namespace Armut.Iyzipay
             return new RestHttpClient();
         }
 
-        public T Get<T>(String url)
+        public async Task<T> GetAsync<T>(string url)
         {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                HttpResponseMessage httpResponseMessage = httpClient.GetAsync(url).Result;
+            HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(url);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<T>(httpResponseMessage.Content.ReadAsStringAsync().Result);
-            }
+            return JsonConvert.DeserializeObject<T>(strContent);
         }
 
-        public T Post<T>(String url, WebHeaderCollection headers, BaseRequest request)
+        public T Get<T>(string url)
         {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                foreach (String key in headers.AllKeys)
-                {
-                    httpClient.DefaultRequestHeaders.Add(key, headers[key]);
-                }
-
-                HttpResponseMessage httpResponseMessage = httpClient.PostAsync(url, JsonBuilder.ToJsonString(request)).Result;
-                return JsonConvert.DeserializeObject<T>(httpResponseMessage.Content.ReadAsStringAsync().Result);
-            }
+            return GetAsync<T>(url).Result;
         }
 
-        public T Delete<T>(String url, WebHeaderCollection headers, BaseRequest request)
+        public async Task<T> PostAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            using (HttpClient httpClient = new HttpClient())
+            HttpRequestMessage requestMessage = new HttpRequestMessage
             {
-                foreach (String key in headers.AllKeys)
-                {
-                    httpClient.DefaultRequestHeaders.Add(key, headers[key]);
-                }
+                Content = JsonBuilder.ToJsonString(request),
+                Method = HttpMethod.Post,
+                RequestUri = new Uri(url, UriKind.Absolute)
+            };
 
-                HttpRequestMessage requestMessage = new HttpRequestMessage
-                {
-                    Content = JsonBuilder.ToJsonString(request),
-                    Method = HttpMethod.Delete,
-                    RequestUri = new Uri(url)
-
-                };
-                HttpResponseMessage httpResponseMessage = httpClient.SendAsync(requestMessage).Result;
-                return JsonConvert.DeserializeObject<T>(httpResponseMessage.Content.ReadAsStringAsync().Result);
+            foreach (string key in headers.AllKeys)
+            {
+                requestMessage.Headers.Add(key, headers[key]);
             }
+
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<T>(strContent);
         }
 
-        public T Put<T>(String url, WebHeaderCollection headers, BaseRequest request)
+        public T Post<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            using (HttpClient httpClient = new HttpClient())
-            {
-                foreach (String key in headers.AllKeys)
-                {
-                    httpClient.DefaultRequestHeaders.Add(key, headers[key]);
-                }
+            return PostAsync<T>(url, headers, request).Result;
+        }
 
-                HttpResponseMessage httpResponseMessage = httpClient.PutAsync(url, JsonBuilder.ToJsonString(request)).Result;
-                return JsonConvert.DeserializeObject<T>(httpResponseMessage.Content.ReadAsStringAsync().Result);
+        public async Task<T> DeleteAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
+        {
+            HttpRequestMessage requestMessage = new HttpRequestMessage
+            {
+                Content = JsonBuilder.ToJsonString(request),
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri(url, UriKind.Absolute)
+            };
+
+            foreach (string key in headers.AllKeys)
+            {
+                requestMessage.Headers.Add(key, headers[key]);
             }
+
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(strContent);
+        }
+
+        public T Delete<T>(string url, WebHeaderCollection headers, BaseRequest request)
+        {
+            return DeleteAsync<T>(url, headers, request).Result;
+        }
+
+        public async Task<T> PutAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
+        {
+            HttpRequestMessage requestMessage = new HttpRequestMessage
+            {
+                Content = JsonBuilder.ToJsonString(request),
+                Method = HttpMethod.Put,
+                RequestUri = new Uri(url, UriKind.Absolute)
+            };
+
+            foreach (string key in headers.AllKeys)
+            {
+                requestMessage.Headers.Add(key, headers[key]);
+            }
+
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(strContent);
+        }
+
+        public T Put<T>(string url, WebHeaderCollection headers, BaseRequest request)
+        {
+            return PutAsync<T>(url, headers, request).Result;
         }
     }
 }
+

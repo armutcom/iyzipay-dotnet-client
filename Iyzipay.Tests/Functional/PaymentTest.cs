@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
@@ -10,13 +11,13 @@ namespace Armut.Iyzipay.Tests.Functional
     public class PaymentTest : BaseTest
     {
         [Test]
-        public void Should_Create_Listing_Payment()
+        public async Task Should_Create_Listing_Payment()
         {
             CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment payment = Payment.Create(request, Options);
+            Payment payment = await Payment.CreateAsync(request, Options);
 
             PrintResponse(payment);
 
@@ -38,7 +39,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Create_Marketplace_Payment()
+        public async Task Should_Create_Marketplace_Payment()
         {
             CreateSubMerchantRequest createSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
                 .PersonalSubMerchantRequest()
@@ -49,7 +50,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .MarketplacePayment(subMerchantKey)
                 .Build();
 
-            Payment payment = Payment.Create(request, Options);
+            Payment payment = await Payment.CreateAsync(request, Options);
 
             PrintResponse(payment);
 
@@ -72,7 +73,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Create_Payment_With_Registered_Card()
+        public async Task Should_Create_Payment_With_Registered_Card()
         {
             string externalUserId = RandomGenerator.RandomId;
             CardInformation cardInformation = CardInformationBuilder.Create()
@@ -84,7 +85,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .Email("email@email.com")
                 .Build();
 
-            Card card = Card.Create(cardRequest, Options);
+            Card card = await Card.CreateAsync(cardRequest, Options);
 
             PaymentCard paymentCard = PaymentCardBuilder.Create()
                 .CardUserKey(card.CardUserKey)
@@ -96,7 +97,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .PaymentCard(paymentCard)
                 .Build();
 
-            Payment payment = Payment.Create(request, Options);
+            Payment payment = await Payment.CreateAsync(request, Options);
 
             PrintResponse(payment);
 
@@ -120,13 +121,13 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Retrieve_Payment()
+        public async Task Should_Retrieve_Payment()
         {
             CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment createdPayment = Payment.Create(request, Options);
+            Payment createdPayment = await Payment.CreateAsync(request, Options);
 
             PrintResponse(createdPayment);
 
@@ -135,7 +136,7 @@ namespace Armut.Iyzipay.Tests.Functional
             retrievePaymentRequest.ConversationId = "123456789";
             retrievePaymentRequest.PaymentId = createdPayment.PaymentId;
 
-            Payment payment = Payment.Retrieve(retrievePaymentRequest, Options);
+            Payment payment = await Payment.RetrieveAsync(retrievePaymentRequest, Options);
 
             Assert.AreEqual(Locale.TR.ToString(), payment.Locale);
             Assert.AreEqual(Status.SUCCESS.ToString(), payment.Status);

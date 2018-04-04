@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using NUnit.Framework;
@@ -8,13 +9,13 @@ namespace Armut.Iyzipay.Tests.Functional
     public class BinNumberTest : BaseTest
     {
         [Test]
-        public void Should_Retrieve_Bin()
+        public async Task Should_Retrieve_Bin()
         {
             RetrieveBinNumberRequest request = RetrieveBinNumberRequestBuilder.Create()
                 .BinNumber("554960")
                 .Build();
 
-            BinNumber binNumber = BinNumber.Retrieve(request, Options);
+            BinNumber binNumber = await BinNumber.RetrieveAsync(request, Options);
 
             PrintResponse(request);
 

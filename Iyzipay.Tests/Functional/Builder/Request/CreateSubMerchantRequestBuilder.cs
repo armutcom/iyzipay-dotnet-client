@@ -3,14 +3,14 @@ using Armut.Iyzipay.Tests.Functional.Util;
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class CreateSubMerchantRequestBuilder : BaseRequestBuilder
+    public sealed class CreateSubMerchantRequestBuilder : BaseRequestBuilder<CreateSubMerchantRequest>
     {
         private string _name = "John's market";
         private string _email = "email@submerchantemail.com";
         private string _gsmNumber = "+905350000000";
         private string _address = "Nidakule Göztepe, Merdivenköy Mah. Bora Sok. No:1";
         private string _iban = "TR180006200119000006672315";
-        private string _currency = global::Armut.Iyzipay.Model.Currency.TRY.ToString();
+        private string _currency = Model.Currency.TRY.ToString();
         private string _taxOffice;
         private string _contactName;
         private string _contactSurname;
@@ -120,33 +120,35 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreateSubMerchantRequest Build()
+        public override CreateSubMerchantRequest Build()
         {
-            CreateSubMerchantRequest createSubMerchantRequest = new CreateSubMerchantRequest();
-            createSubMerchantRequest.Locale = Locale;
-            createSubMerchantRequest.ConversationId = ConversationId;
-            createSubMerchantRequest.Name = _name;
-            createSubMerchantRequest.Email = _email;
-            createSubMerchantRequest.GsmNumber = _gsmNumber;
-            createSubMerchantRequest.Address = _address;
-            createSubMerchantRequest.Iban = _iban;
-            createSubMerchantRequest.TaxOffice = _taxOffice;
-            createSubMerchantRequest.ContactName = _contactName;
-            createSubMerchantRequest.ContactSurname = _contactSurname;
-            createSubMerchantRequest.LegalCompanyTitle = _legalCompanyTitle;
-            createSubMerchantRequest.SubMerchantExternalId =_subMerchantExternalId;
-            createSubMerchantRequest.IdentityNumber = _identityNumber;
-            createSubMerchantRequest.TaxNumber = _taxNumber;
-            createSubMerchantRequest.SubMerchantType = _subMerchantType;
-            createSubMerchantRequest.Currency =_currency;
-            createSubMerchantRequest.SwiftCode = _swiftCode;
+            CreateSubMerchantRequest createSubMerchantRequest = new CreateSubMerchantRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                Name = _name,
+                Email = _email,
+                GsmNumber = _gsmNumber,
+                Address = _address,
+                Iban = _iban,
+                TaxOffice = _taxOffice,
+                ContactName = _contactName,
+                ContactSurname = _contactSurname,
+                LegalCompanyTitle = _legalCompanyTitle,
+                SubMerchantExternalId = _subMerchantExternalId,
+                IdentityNumber = _identityNumber,
+                TaxNumber = _taxNumber,
+                SubMerchantType = _subMerchantType,
+                Currency = _currency,
+                SwiftCode = _swiftCode
+            };
             return createSubMerchantRequest;
         }
 
         public CreateSubMerchantRequestBuilder PersonalSubMerchantRequest()
         {
             _subMerchantExternalId = RandomGenerator.RandomId;
-            _subMerchantType = global::Armut.Iyzipay.Model.SubMerchantType.PERSONAL.ToString();
+            _subMerchantType = Model.SubMerchantType.PERSONAL.ToString();
             _contactName = "John";
             _contactSurname = "Doe";
             _identityNumber = "123456789";
@@ -156,7 +158,7 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
         public CreateSubMerchantRequestBuilder PrivateSubMerchantRequest()
         {
             _subMerchantExternalId = RandomGenerator.RandomId;
-            _subMerchantType = global::Armut.Iyzipay.Model.SubMerchantType.PRIVATE_COMPANY.ToString();
+            _subMerchantType = Model.SubMerchantType.PRIVATE_COMPANY.ToString();
             _taxOffice = "Tax office";
             _legalCompanyTitle = "John Doe inc";
             _identityNumber = "31300864726";
@@ -166,7 +168,7 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
         public CreateSubMerchantRequestBuilder LimitedCompanySubMerchantRequest()
         {
             _subMerchantExternalId = RandomGenerator.RandomId;
-            _subMerchantType = global::Armut.Iyzipay.Model.SubMerchantType.LIMITED_OR_JOINT_STOCK_COMPANY.ToString();
+            _subMerchantType = Model.SubMerchantType.LIMITED_OR_JOINT_STOCK_COMPANY.ToString();
             _taxOffice = "Tax office";
             _taxNumber = "9261877";
             _legalCompanyTitle = "XYZ inc";

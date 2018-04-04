@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Request
+﻿namespace Armut.Iyzipay.Request
 {
     public class RetrieveCardListRequest : BaseRequest
     {
-        public String CardUserKey { get; set; }
+        public string CardUserKey { get; set; }
 
-        public override String ToPKIRequestString()
+        public override string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .AppendSuper(base.ToPKIRequestString())

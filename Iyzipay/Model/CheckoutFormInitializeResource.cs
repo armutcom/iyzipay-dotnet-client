@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
     public class CheckoutFormInitializeResource : IyzipayResource
     {
-        public String Token { get; set; }
-        public String CheckoutFormContent { get; set; }
+        public string Token { get; set; }
+        public string CheckoutFormContent { get; set; }
         public long? TokenExpireTime { get; set; }
-        public String PaymentPageUrl { get; set; }
+        public string PaymentPageUrl { get; set; }
     }
 }

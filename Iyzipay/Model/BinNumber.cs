@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Armut.Iyzipay.Request;
 using Newtonsoft.Json;
 
@@ -6,17 +6,24 @@ namespace Armut.Iyzipay.Model
 {
     public class BinNumber : IyzipayResource
     {
+        private const string BinNumberUrl = "/payment/bin/check";
+
         [JsonProperty(PropertyName = "binNumber")]
-        public String Bin { get; set; }
-        public String CardType { get; set; }
-        public String CardAssociation { get; set; }
-        public String CardFamily { get; set; }
-        public String BankName { get; set; }
+        public string Bin { get; set; }
+        public string CardType { get; set; }
+        public string CardAssociation { get; set; }
+        public string CardFamily { get; set; }
+        public string BankName { get; set; }
         public long BankCode { get; set; }
 
         public static BinNumber Retrieve(RetrieveBinNumberRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BinNumber>(options.BaseUrl + "/payment/bin/check", GetHttpHeaders(request, options), request);
+            return RestHttpClient.Create().Post<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
+        }
+
+        public static async Task<BinNumber> RetrieveAsync(RetrieveBinNumberRequest request, Options options)
+        {
+            return await RestHttpClient.Create().PostAsync<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

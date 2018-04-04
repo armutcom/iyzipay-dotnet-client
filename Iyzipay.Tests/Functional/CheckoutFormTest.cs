@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder;
@@ -11,7 +12,7 @@ namespace Armut.Iyzipay.Tests.Functional
     public class CheckoutFormTest : BaseTest
     {
         [Test]
-        public void Should_Initialize_Checkout_Form_For_Standard_Merchant()
+        public async Task Should_Initialize_Checkout_Form_For_Standard_Merchant()
         {
             IReadOnlyList<BasketItem> basketItems =
                 new ReadOnlyCollection<BasketItem>(new List<BasketItem>()
@@ -27,7 +28,7 @@ namespace Armut.Iyzipay.Tests.Functional
                 .BasketItems(basketItems)
                 .Build();
 
-            CheckoutFormInitialize checkoutFormInitialize = CheckoutFormInitialize.Create(request, Options);
+            CheckoutFormInitialize checkoutFormInitialize = await CheckoutFormInitialize.CreateAsync(request, Options);
 
             PrintResponse(request);
 
@@ -39,7 +40,7 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Retrieve_Checkout_Form_Result()
+        public async Task Should_Retrieve_Checkout_Form_Result()
         {
             IReadOnlyList<BasketItem> basketItems =
                 new ReadOnlyCollection<BasketItem>(new List<BasketItem>()
@@ -55,13 +56,13 @@ namespace Armut.Iyzipay.Tests.Functional
                 .BasketItems(basketItems)
                 .Build();
 
-            CheckoutFormInitialize checkoutFormInitialize = CheckoutFormInitialize.Create(request, Options);
+            CheckoutFormInitialize checkoutFormInitialize = await CheckoutFormInitialize.CreateAsync(request, Options);
 
             RetrieveCheckoutFormRequest retrieveCheckoutFormRequest = RetrieveCheckoutFormRequestBuilder.Create()
                 .Token(checkoutFormInitialize.Token)
                 .Build();
 
-            CheckoutForm checkoutForm = CheckoutForm.Retrieve(retrieveCheckoutFormRequest, Options);
+            CheckoutForm checkoutForm = await CheckoutForm.RetrieveAsync(retrieveCheckoutFormRequest, Options);
 
             PrintResponse(checkoutForm);
 

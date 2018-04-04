@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class RetrieveCheckoutFormRequestBuilder : BaseRequestBuilder
+    public sealed class RetrieveCheckoutFormRequestBuilder : BaseRequestBuilder<RetrieveCheckoutFormRequest>
     {
         private string _token;
 
@@ -17,16 +17,18 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 
         public RetrieveCheckoutFormRequestBuilder Token(string token)
         {
-            this._token = token;
+            _token = token;
             return this;
         }
 
-        public RetrieveCheckoutFormRequest Build()
+        public override RetrieveCheckoutFormRequest Build()
         {
-            RetrieveCheckoutFormRequest retrieveCheckoutFormRequest = new RetrieveCheckoutFormRequest();
-            retrieveCheckoutFormRequest.Locale = Locale;
-            retrieveCheckoutFormRequest.ConversationId = ConversationId;
-            retrieveCheckoutFormRequest.Token = _token;
+            RetrieveCheckoutFormRequest retrieveCheckoutFormRequest = new RetrieveCheckoutFormRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                Token = _token
+            };
             return retrieveCheckoutFormRequest;
         }
     }

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Armut.Iyzipay
 {
     public class ToStringRequestBuilder
     {
-        private String _requestString;
+        private string _requestString;
 
-        private ToStringRequestBuilder(String requestString)
+        private ToStringRequestBuilder(string requestString)
         {
-            this._requestString = requestString;
+            _requestString = requestString;
         }
 
         public static ToStringRequestBuilder NewInstance()
@@ -17,12 +16,12 @@ namespace Armut.Iyzipay
             return new ToStringRequestBuilder("");
         }
 
-        public static ToStringRequestBuilder NewInstance(String requestString)
+        public static ToStringRequestBuilder NewInstance(string requestString)
         {
             return new ToStringRequestBuilder(requestString);
         }
 
-        public ToStringRequestBuilder AppendSuper(String superRequestString)
+        public ToStringRequestBuilder AppendSuper(string superRequestString)
         {
             if (superRequestString != null)
             {
@@ -31,13 +30,13 @@ namespace Armut.Iyzipay
 
                 if (superRequestString.Length > 0)
                 {
-                    this._requestString = this._requestString + superRequestString + ",";
+                    _requestString = _requestString + superRequestString + ",";
                 }
             }
             return this;
         }
 
-        public ToStringRequestBuilder Append(String key, Object value = null)
+        public ToStringRequestBuilder Append(string key, object value = null)
         {
             if (value != null)
             {
@@ -53,7 +52,7 @@ namespace Armut.Iyzipay
             return this;
         }
 
-        public ToStringRequestBuilder AppendPrice(String key, String value)
+        public ToStringRequestBuilder AppendPrice(string key, string value)
         {
             if (value != null)
             {
@@ -62,11 +61,11 @@ namespace Armut.Iyzipay
             return this;
         }
 
-        public ToStringRequestBuilder AppendList<T>(String key, List<T> list = null) where T : RequestStringConvertible
+        public ToStringRequestBuilder AppendList<T>(string key, List<T> list = null) where T : RequestStringConvertible
         {
             if (list != null)
             {
-                String appendedValue = "";
+                string appendedValue = "";
                 foreach (RequestStringConvertible value in list)
                 {
                     appendedValue = appendedValue + value.ToPKIRequestString() + ", ";
@@ -76,11 +75,11 @@ namespace Armut.Iyzipay
             return this;
         }
 
-        public ToStringRequestBuilder AppendList (String key, List<int> list = null)
+        public ToStringRequestBuilder AppendList (string key, List<int> list = null)
         {
             if (list != null)
             {
-                String appendedValue = "";
+                string appendedValue = "";
                 foreach (int value in list)
                 {
                     appendedValue = appendedValue + value + ", ";
@@ -90,41 +89,41 @@ namespace Armut.Iyzipay
             return this;
         }
 
-        private ToStringRequestBuilder AppendKeyValue(String key, String value)
+        private ToStringRequestBuilder AppendKeyValue(string key, string value)
         {
             if (value != null)
             {
-                this._requestString = this._requestString + key + "=" + value + ",";
+                _requestString = _requestString + key + "=" + value + ",";
             }
             return this;
         }
 
-        private ToStringRequestBuilder AppendKeyValueArray(String key, String value)
+        private ToStringRequestBuilder AppendKeyValueArray(string key, string value)
         {
             if (value != null)
             {
                 value = value.Substring(0, value.Length - 2);
-                this._requestString = this._requestString + key + "=[" + value + "],";
+                _requestString = _requestString + key + "=[" + value + "],";
             }
             return this;
         }
 
         private ToStringRequestBuilder AppendPrefix()
         {
-            this._requestString = "[" + this._requestString + "]";
+            _requestString = "[" + _requestString + "]";
             return this;
         }
 
         private ToStringRequestBuilder RemoveTrailingComma()
         {
-            if (!string.IsNullOrEmpty(this._requestString))
+            if (!string.IsNullOrEmpty(_requestString))
             {
-                this._requestString = this._requestString.Substring(0, this._requestString.Length - 1);
+                _requestString = _requestString.Substring(0, _requestString.Length - 1);
             }
             return this;
         }
 
-        public String GetRequestString()
+        public string GetRequestString()
         {
             RemoveTrailingComma();
             AppendPrefix();

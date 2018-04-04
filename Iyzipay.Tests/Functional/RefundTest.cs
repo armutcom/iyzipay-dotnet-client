@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using Armut.Iyzipay.Tests.Functional.Util;
@@ -9,23 +10,25 @@ namespace Armut.Iyzipay.Tests.Functional
     public class RefundTest : BaseTest
     {
         [Test]
-        public void Should_Refund_Payment()
+        public async Task Should_Refund_Payment()
         {
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
 
-            CreateRefundRequest request = new CreateRefundRequest();
-            request.Locale = Locale.TR.ToString();
-            request.ConversationId = "123456789";
-            request.PaymentTransactionId = payment.PaymentItems[0].PaymentTransactionId;
-            request.Price = "0.2";
-            request.Currency = Currency.TRY.ToString();
-            request.Ip = "85.34.78.112";
+            CreateRefundRequest request = new CreateRefundRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                PaymentTransactionId = payment.PaymentItems[0].PaymentTransactionId,
+                Price = "0.2",
+                Currency = Currency.TRY.ToString(),
+                Ip = "85.34.78.112"
+            };
 
-            Refund refund = Refund.Create(request, Options);
+            Refund refund = await Refund.CreateAsync(request, Options);
 
             PrintResponse(refund);
 
@@ -42,13 +45,13 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Refund_Fraudulent_Payment()
+        public async Task Should_Refund_Fraudulent_Payment()
         {
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
 
             CreateRefundRequest request = new CreateRefundRequest();
             request.Locale = Locale.TR.ToString();
@@ -60,7 +63,7 @@ namespace Armut.Iyzipay.Tests.Functional
             request.Reason = RefundReason.FRAUD.ToString();
             request.Description = "stolen card request with 11000 try payment for default sample";
 
-            Refund refund = Refund.Create(request, Options);
+            Refund refund = await Refund.CreateAsync(request, Options);
 
             PrintResponse(refund);
 

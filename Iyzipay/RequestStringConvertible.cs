@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Armut.Iyzipay
+﻿namespace Armut.Iyzipay
 {
     public interface RequestStringConvertible
     {
-        String ToPKIRequestString();
+        string ToPKIRequestString();
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Request
+﻿namespace Armut.Iyzipay.Request
 {
    public class RetrieveApmRequest : BaseRequest
     {
-        public String PaymentId { get; set; }
+        public string PaymentId { get; set; }
 
-        public override String ToPKIRequestString()
+        public override string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .AppendSuper(base.ToPKIRequestString())

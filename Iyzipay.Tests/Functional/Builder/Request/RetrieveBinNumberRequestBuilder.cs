@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public sealed class RetrieveBinNumberRequestBuilder : BaseRequestBuilder
+    public sealed class RetrieveBinNumberRequestBuilder : BaseRequestBuilder<RetrieveBinNumberRequest>
     {
         private string _binNumber;
 
@@ -17,16 +17,18 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 
         public RetrieveBinNumberRequestBuilder BinNumber(string binNumber)
         {
-            this._binNumber = binNumber;
+            _binNumber = binNumber;
             return this;
         }
 
-        public RetrieveBinNumberRequest Build()
+        public override RetrieveBinNumberRequest Build()
         {
-            RetrieveBinNumberRequest retrieveBinNumberRequest = new RetrieveBinNumberRequest();
-            retrieveBinNumberRequest.Locale = Locale;
-            retrieveBinNumberRequest.ConversationId = ConversationId;
-            retrieveBinNumberRequest.BinNumber = _binNumber;
+            RetrieveBinNumberRequest retrieveBinNumberRequest = new RetrieveBinNumberRequest
+            {
+                Locale = Locale,
+                ConversationId = ConversationId,
+                BinNumber = _binNumber
+            };
             return retrieveBinNumberRequest;
         }
     }

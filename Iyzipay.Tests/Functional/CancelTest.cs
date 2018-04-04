@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using Armut.Iyzipay.Tests.Functional.Util;
@@ -9,19 +10,19 @@ namespace Armut.Iyzipay.Tests.Functional
     public class CancelTest : BaseTest
     {
         [Test]
-        public void Should_Cancel_Payment()
+        public async Task Should_Cancel_Payment()
         {
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
 
             CreateCancelRequest cancelRequest = CreateCancelRequestBuilder.Create()
                 .PaymentId(payment.PaymentId)
                 .Build();
 
-            Cancel cancel = Cancel.Create(cancelRequest, Options);
+            Cancel cancel = await Cancel.CreateAsync(cancelRequest, Options);
 
             PrintResponse(cancel);
 
@@ -37,13 +38,13 @@ namespace Armut.Iyzipay.Tests.Functional
         }
 
         [Test]
-        public void Should_Cancel_Fraudulent_Payment()
+        public async Task Should_Cancel_Fraudulent_Payment()
         {
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .StandardListingPayment()
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
 
             CreateCancelRequest cancelRequest = CreateCancelRequestBuilder.Create()
                 .PaymentId(payment.PaymentId)
@@ -52,7 +53,7 @@ namespace Armut.Iyzipay.Tests.Functional
             cancelRequest.Reason = RefundReason.FRAUD.ToString();
             cancelRequest.Description = "stolen card request with 11000 try payment for default sample";
 
-            Cancel cancel = Cancel.Create(cancelRequest, Options);
+            Cancel cancel = await Cancel.CreateAsync(cancelRequest, Options);
 
             PrintResponse(cancel);
 

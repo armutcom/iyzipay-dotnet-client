@@ -19,7 +19,7 @@ echo --------------------
 echo Running NET45 Tests
 echo --------------------
 
-mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Armut.Iyzipay.Tests.csproj/bin/Release/net45/Iyzipay.Tests.dll
+mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Iyzipay.Tests/bin/Release/net45/Iyzipay.Tests.dll
 
 echo --------------------
 echo Running NETCORE2 Tests

@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using NUnit.Framework;
@@ -8,26 +9,26 @@ namespace Armut.Iyzipay.Tests.Functional
     public class ApprovalTest : BaseTest
     {
         [Test]
-        public void Should_Approve_Payment_Item()
+        public async Task Should_Approve_Payment_Item()
         {
             CreateSubMerchantRequest request = CreateSubMerchantRequestBuilder.Create()
                 .PersonalSubMerchantRequest()
                 .Build();
 
-            SubMerchant subMerchant = SubMerchant.Create(request, Options);
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(request, Options);
 
             CreatePaymentRequest paymentRequest = CreatePaymentRequestBuilder.Create()
                 .MarketplacePayment(subMerchant.SubMerchantKey)
                 .Build();
 
-            Payment payment = Payment.Create(paymentRequest, Options);
+            Payment payment = await Payment.CreateAsync(paymentRequest, Options);
             string paymentTransactionId = payment.PaymentItems[0].PaymentTransactionId;
 
             CreateApprovalRequest approvalRequest = CreateApprovalRequestBuilder.Create()
                 .PaymentTransactionId(paymentTransactionId)
                 .Build();
 
-            Approval approval = Approval.Create(approvalRequest, Options);
+            Approval approval = await Approval.CreateAsync(approvalRequest, Options);
 
             Assert.AreEqual(paymentTransactionId, approval.PaymentTransactionId);
             Assert.AreEqual(Locale.TR.ToString(), payment.Locale);

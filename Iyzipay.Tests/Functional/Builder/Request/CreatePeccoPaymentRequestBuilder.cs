@@ -2,7 +2,7 @@
 
 namespace Armut.Iyzipay.Tests.Functional.Builder.Request
 {
-    public class CreatePeccoPaymentRequestBuilder : BaseRequestBuilder
+    public class CreatePeccoPaymentRequestBuilder : BaseRequestBuilder<CreatePeccoPaymentRequest>
     {
         private string _token;
 
@@ -21,10 +21,9 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
-        public CreatePeccoPaymentRequest Build()
+        public override CreatePeccoPaymentRequest Build()
         {
-            CreatePeccoPaymentRequest createPeccoPaymentRequest = new CreatePeccoPaymentRequest();
-            createPeccoPaymentRequest.Token = _token;
+            CreatePeccoPaymentRequest createPeccoPaymentRequest = new CreatePeccoPaymentRequest {Token = _token};
             return createPeccoPaymentRequest;
         }
     }

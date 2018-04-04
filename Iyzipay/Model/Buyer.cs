@@ -1,24 +1,22 @@
-﻿using System;
-
-namespace Armut.Iyzipay.Model
+﻿namespace Armut.Iyzipay.Model
 {
     public class Buyer : RequestStringConvertible
     {
-        public String Id { get; set; }
-        public String Name { get; set; }
-        public String Surname { get; set; }
-        public String IdentityNumber { get; set; }
-        public String Email { get; set; }
-        public String GsmNumber { get; set; }
-        public String RegistrationDate { get; set; }
-        public String LastLoginDate { get; set; }
-        public String RegistrationAddress { get; set; }
-        public String City { get; set; }
-        public String Country { get; set; }
-        public String ZipCode { get; set; }
-        public String Ip { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string IdentityNumber { get; set; }
+        public string Email { get; set; }
+        public string GsmNumber { get; set; }
+        public string RegistrationDate { get; set; }
+        public string LastLoginDate { get; set; }
+        public string RegistrationAddress { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string ZipCode { get; set; }
+        public string Ip { get; set; }
 
-        public String ToPKIRequestString()
+        public string ToPKIRequestString()
         {
             return ToStringRequestBuilder.NewInstance()
                 .Append("id", Id)

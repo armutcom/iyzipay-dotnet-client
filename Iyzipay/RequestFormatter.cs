@@ -1,17 +1,15 @@
-﻿using System;
-
-namespace Armut.Iyzipay
+﻿namespace Armut.Iyzipay
 {
     public class RequestFormatter
     {
-        public static String FormatPrice(String price)
+        public static string FormatPrice(string price)
         {
             if (!price.Contains("."))
             {
                 return price + ".0";
             }
             int subStrIndex = 0;
-            String priceReversed = StringHelper.Reverse(price);
+            string priceReversed = StringHelper.Reverse(price);
             for (int i = 0; i < priceReversed.Length; i++)
             {
                 if (priceReversed[i].Equals('0'))

@@ -1,4 +1,5 @@
-﻿using Armut.Iyzipay.Model;
+﻿using System.Threading.Tasks;
+using Armut.Iyzipay.Model;
 using Armut.Iyzipay.Request;
 using Armut.Iyzipay.Tests.Functional.Builder.Request;
 using NUnit.Framework;
@@ -8,14 +9,14 @@ namespace Armut.Iyzipay.Tests.Functional
     public class BkmTest : BaseTest
     {
         [Test]
-        public void Should_Initialize_Bkm()
+        public async Task Should_Initialize_Bkm()
         {
             CreateBkmInitializeRequest request = CreateBkmInitializeRequestBuilder.Create()
                 .Price("1")
                 .CallbackUrl("https://www.merchant.com/callback")
                 .Build();
 
-            BkmInitialize bkmInitialize = BkmInitialize.Create(request, Options);
+            BkmInitialize bkmInitialize = await BkmInitialize.CreateAsync(request, Options);
 
             PrintResponse(request);
 

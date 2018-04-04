@@ -9,9 +9,9 @@ namespace Armut.Iyzipay
         {
         }
 
-        public static String DecodeString(String content)
+        public static string DecodeString(string content)
         {
-            return (!String.IsNullOrEmpty(content)) ? Encoding.UTF8.GetString(Convert.FromBase64String(content)) : null;
+            return (!string.IsNullOrEmpty(content)) ? Encoding.UTF8.GetString(Convert.FromBase64String(content)) : null;
         }
     }
 }
