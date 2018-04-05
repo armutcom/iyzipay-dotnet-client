@@ -7,5 +7,5 @@ init:
 build_script:
   - ps: .\build.ps1
 test_script:
-  - cmd: dotnet test ./Iyzipay.Tests -c Release
+  - cmd: dotnet test ./Iyzipay.Tests -c Release --test-adapter-path:. --logger:Appveyor
 deploy: off
