@@ -37,7 +37,9 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual("123456789", refund.ConversationId);
             Assert.AreEqual(payment.PaymentId, refund.PaymentId);
             Assert.AreEqual(payment.PaymentItems[0].PaymentTransactionId, refund.PaymentTransactionId);
-            Assert.AreEqual("0.2", refund.Price.RemoveTrailingZeros());
+            Assert.AreEqual("0.2", refund.Price);
+            Assert.AreEqual(0.2, refund.Price.ParseDouble());
+            AssertDecimal.AreEqual(0.2M, refund.Price.ParseDecimal());
             Assert.NotNull(refund.SystemTime);
             Assert.Null(refund.ErrorCode);
             Assert.Null(refund.ErrorMessage);
@@ -72,7 +74,9 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual("123456789", refund.ConversationId);
             Assert.AreEqual(payment.PaymentId, refund.PaymentId);
             Assert.AreEqual(payment.PaymentItems[0].PaymentTransactionId, refund.PaymentTransactionId);
-            Assert.AreEqual("0.2", refund.Price.RemoveTrailingZeros());
+            Assert.AreEqual("0.2", refund.Price);
+            Assert.AreEqual(0.2, refund.Price.ParseDouble());
+            AssertDecimal.AreEqual(0.2M, refund.Price.ParseDecimal());
             Assert.NotNull(refund.SystemTime);
             Assert.Null(refund.ErrorCode);
             Assert.Null(refund.ErrorMessage);
