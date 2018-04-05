@@ -9,7 +9,7 @@ You can sign up for an iyzico account at https://iyzico.com
 ## Builds status
 |       | Linux | Windows |
 |-------|-------|----------|
-| Build | [![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/iyzico/iyzipay-dotnet)      | [![Build status](https://ci.appveyor.com/api/projects/status/ffjofvbl1bsmw2q8?svg=true)](https://ci.appveyor.com/project/Blind-Striker/iyzipay-dotnet-client)   
+| Build | [![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/armutcom/iyzipay-dotnet-client)      | [![Build status](https://ci.appveyor.com/api/projects/status/ffjofvbl1bsmw2q8?svg=true)](https://ci.appveyor.com/project/Blind-Striker/iyzipay-dotnet-client)   
 
 ## Installation
 [![NuGet](https://img.shields.io/nuget/v/Armut.Iyzipay.svg)](https://www.nuget.org/packages/Iyzipay/)
