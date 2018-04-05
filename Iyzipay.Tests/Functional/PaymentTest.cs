@@ -51,7 +51,9 @@ namespace Armut.Iyzipay.Tests.Functional
                 .PersonalSubMerchantRequest()
                 .Build();
 
-            string subMerchantKey = SubMerchant.Create(createSubMerchantRequest, Options).SubMerchantKey;
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(createSubMerchantRequest, Options);
+
+            string subMerchantKey = subMerchant.SubMerchantKey;
             CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
                 .MarketplacePayment(subMerchantKey)
                 .Build();
