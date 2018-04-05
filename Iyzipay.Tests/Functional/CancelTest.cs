@@ -29,7 +29,9 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual(Locale.TR.ToString(), cancel.Locale);
             Assert.AreEqual(Status.SUCCESS.ToString(), cancel.Status);
             Assert.AreEqual(payment.PaymentId, cancel.PaymentId);
-            Assert.AreEqual("1.1", cancel.Price.RemoveTrailingZeros());
+            Assert.AreEqual("1.10000000", cancel.Price);
+            Assert.AreEqual(1.1, cancel.Price.ParseDouble());
+            AssertDecimal.AreEqual(1.10000000M , cancel.Price.ParseDecimal());
             Assert.AreEqual(Currency.TRY.ToString(), cancel.Currency);
             Assert.NotNull(cancel.SystemTime);
             Assert.Null(cancel.ErrorCode);
@@ -60,7 +62,9 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual(Locale.TR.ToString(), cancel.Locale);
             Assert.AreEqual(Status.SUCCESS.ToString(), cancel.Status);
             Assert.AreEqual(payment.PaymentId, cancel.PaymentId);
-            Assert.AreEqual("1.1", cancel.Price.RemoveTrailingZeros());
+            Assert.AreEqual("1.10000000", cancel.Price);
+            Assert.AreEqual(1.1, cancel.Price.ParseDouble());
+            AssertDecimal.AreEqual(1.10000000M, cancel.Price.ParseDecimal());
             Assert.AreEqual(Currency.TRY.ToString(), cancel.Currency);
             Assert.NotNull(cancel.SystemTime);
             Assert.Null(cancel.ErrorCode);

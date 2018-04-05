@@ -1,0 +1,11 @@
+image: Visual Studio 2017
+branches:
+  only:
+  - master
+init:
+  - cmd: git config --global core.autocrlf true
+build_script:
+  - ps: .\build.ps1
+test_script:
+  - cmd: dotnet test ./Iyzipay.Tests -c Release --test-adapter-path:. --logger:Appveyor
+deploy: off

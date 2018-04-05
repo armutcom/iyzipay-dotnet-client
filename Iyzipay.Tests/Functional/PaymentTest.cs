@@ -30,12 +30,18 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.Null(payment.ErrorGroup);
             Assert.NotNull(payment.PaymentId);
             Assert.NotNull(payment.BasketId);
-            Assert.AreEqual(payment.Price, "1");
-            Assert.AreEqual(payment.PaidPrice, "1.1");
-            Assert.AreEqual(payment.IyziCommissionRateAmount.RemoveTrailingZeros(), "0.028875");
-            Assert.AreEqual(payment.IyziCommissionFee.RemoveTrailingZeros(), "0.25");
-            Assert.AreEqual(payment.MerchantCommissionRate.RemoveTrailingZeros(), "10");
-            Assert.AreEqual(payment.MerchantCommissionRateAmount.RemoveTrailingZeros(), "0.1");
+            Assert.AreEqual("1", payment.Price);
+            Assert.AreEqual("1.1", payment.PaidPrice);
+            Assert.AreEqual("0.02887500", payment.IyziCommissionRateAmount);
+            Assert.AreEqual("0.25000000", payment.IyziCommissionFee);
+            Assert.AreEqual("10.00000000", payment.MerchantCommissionRate);
+            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount);
+            Assert.AreEqual(0.028875, payment.IyziCommissionRateAmount.ParseDouble());
+            Assert.AreEqual(0.25, payment.IyziCommissionFee.ParseDouble());
+            Assert.AreEqual(10, payment.MerchantCommissionRate.ParseDouble());
+            AssertDecimal.AreEqual(0.02887500M, payment.IyziCommissionRateAmount.ParseDecimal());
+            AssertDecimal.AreEqual(0.25000000M, payment.IyziCommissionFee.ParseDecimal());
+            AssertDecimal.AreEqual(10.00000000M, payment.MerchantCommissionRate.ParseDecimal());
         }
 
         [Test]
@@ -65,10 +71,16 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.NotNull(payment.BasketId);
             Assert.AreEqual("1", payment.Price);
             Assert.AreEqual("1.1", payment.PaidPrice);
-            Assert.AreEqual("0.028875", payment.IyziCommissionRateAmount.RemoveTrailingZeros());
-            Assert.AreEqual("0.25", payment.IyziCommissionFee.RemoveTrailingZeros());
-            Assert.AreEqual("10", payment.MerchantCommissionRate.RemoveTrailingZeros());
-            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount.RemoveTrailingZeros());
+            Assert.AreEqual("0.02887500", payment.IyziCommissionRateAmount);
+            Assert.AreEqual("0.25000000", payment.IyziCommissionFee);
+            Assert.AreEqual("10.00000000", payment.MerchantCommissionRate);
+            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount);
+            Assert.AreEqual(0.028875, payment.IyziCommissionRateAmount.ParseDouble());
+            Assert.AreEqual(0.25, payment.IyziCommissionFee.ParseDouble());
+            Assert.AreEqual(10, payment.MerchantCommissionRate.ParseDouble());
+            AssertDecimal.AreEqual(0.02887500M, payment.IyziCommissionRateAmount.ParseDecimal());
+            AssertDecimal.AreEqual(0.25000000M, payment.IyziCommissionFee.ParseDecimal());
+            AssertDecimal.AreEqual(10.00000000M, payment.MerchantCommissionRate.ParseDecimal());
             Assert.AreEqual(1, payment.Installment);
         }
 
@@ -112,11 +124,17 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.NotNull(payment.PaymentId);
             Assert.NotNull(payment.BasketId);
             Assert.AreEqual("1", payment.Price);
-            Assert.AreEqual("1.1", payment.PaidPrice.RemoveTrailingZeros());
-            Assert.AreEqual("0.028875", payment.IyziCommissionRateAmount.RemoveTrailingZeros());
-            Assert.AreEqual("0.25", payment.IyziCommissionFee.RemoveTrailingZeros());
-            Assert.AreEqual("10", payment.MerchantCommissionRate.RemoveTrailingZeros());
-            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount.RemoveTrailingZeros());
+            Assert.AreEqual("1.1", payment.PaidPrice);
+            Assert.AreEqual("0.02887500", payment.IyziCommissionRateAmount);
+            Assert.AreEqual("0.25000000", payment.IyziCommissionFee);
+            Assert.AreEqual("10.00000000", payment.MerchantCommissionRate);
+            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount);
+            Assert.AreEqual(0.028875, payment.IyziCommissionRateAmount.ParseDouble());
+            Assert.AreEqual(0.25, payment.IyziCommissionFee.ParseDouble());
+            Assert.AreEqual(10, payment.MerchantCommissionRate.ParseDouble());
+            AssertDecimal.AreEqual(0.02887500M, payment.IyziCommissionRateAmount.ParseDecimal());
+            AssertDecimal.AreEqual(0.25000000M, payment.IyziCommissionFee.ParseDecimal());
+            AssertDecimal.AreEqual(10.00000000M, payment.MerchantCommissionRate.ParseDecimal());
             Assert.AreEqual(1, payment.Installment);
         }
 
@@ -131,10 +149,12 @@ namespace Armut.Iyzipay.Tests.Functional
 
             PrintResponse(createdPayment);
 
-            RetrievePaymentRequest retrievePaymentRequest = new RetrievePaymentRequest();
-            retrievePaymentRequest.Locale = Locale.TR.ToString();
-            retrievePaymentRequest.ConversationId = "123456789";
-            retrievePaymentRequest.PaymentId = createdPayment.PaymentId;
+            RetrievePaymentRequest retrievePaymentRequest = new RetrievePaymentRequest
+            {
+                Locale = Locale.TR.ToString(),
+                ConversationId = "123456789",
+                PaymentId = createdPayment.PaymentId
+            };
 
             Payment payment = await Payment.RetrieveAsync(retrievePaymentRequest, Options);
 
