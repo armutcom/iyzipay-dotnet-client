@@ -1,23 +1,21 @@
 # iyzipay-dotnet
 
-[![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/iyzico/iyzipay-dotnet)
-[![NuGet](https://img.shields.io/nuget/v/Armut.Iyzipay.svg)](https://www.nuget.org/packages/Iyzipay/)
-
 Unofficial Iyzipay client library that maintained by [Armut.com](https://armut.com/), fork of the [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet)
 
 Supports .NET Framework, .NET Core 1.1 and .NET Core 2.0 runtimes,
 
 You can sign up for an iyzico account at https://iyzico.com
 
-# Requirements
+## Builds status
+|       | Linux | Windows |
+|-------|-------|----------|
+| Build | [![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/iyzico/iyzipay-dotnet)      | [![Build status](https://ci.appveyor.com/api/projects/status/ffjofvbl1bsmw2q8?svg=true)](https://ci.appveyor.com/project/Blind-Striker/iyzipay-dotnet-client)   
 
-.NET Framework 4.5 and later or .NET Core 1.1 or .NET Core 2.0
+## Installation
+[![NuGet](https://img.shields.io/nuget/v/Armut.Iyzipay.svg)](https://www.nuget.org/packages/Iyzipay/)
 
-# Installation
+To install Armut.Iyzipay, run the following command in the Package Manager Console
 
-For now you'll need to install following libraries:
-
-* To install Armut.Iyzipay, run the following command in the Package Manager Console
 ```
 Install-Package Armut.Iyzipay
 ```
@@ -31,6 +29,8 @@ This client library is a fork of [iyzipay-dotnet](https://github.com/iyzico/iyzi
 - Async support provided.
 - Instead of creating a new 'HttpClient' in each request, the shared 'HttpClient' has been used.
 - Refactoring done according to C# coding standards.
+
+Because of armut.com is already using iyico, armut.com will keep the Armut.Iyzipay project up to date and maintain it.
 
 # Usage
 
@@ -147,13 +147,15 @@ var basketItems = new List<BasketItem>
 
 request.BasketItems = basketItems;
 
-Payment payment = Payment.Create(request, options);
+Payment payment = await Payment.CreateAsync(request, options);
 ```
 See other samples under Iyzipay.Samples project.
 
 # Testing
 
 You can run particular sample by passing your credential info to "Iyzipay.Samples/Sample.cs"
+
+You can execute `dotnet test ./Iyzipay.Tests -c Release` project in order to run unit tests. Or use one of the `build.sh`, `build.cmd` or `build.ps1`
 
 ### Mock test cards
 
