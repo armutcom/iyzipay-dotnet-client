@@ -27,6 +27,11 @@ namespace Armut.Iyzipay
             return new RestHttpClient();
         }
 
+        public static void SetTimeout(short seconds)
+        {
+            HttpClient.Timeout = new TimeSpan(0, 0, seconds);
+        }
+
         public async Task<T> GetAsync<T>(string url)
         {
             HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(url);
