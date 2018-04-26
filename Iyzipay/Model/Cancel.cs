@@ -14,12 +14,12 @@ namespace Armut.Iyzipay.Model
 
         public static Cancel Create(CreateCancelRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Cancel>(options.BaseUrl + CancelUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Cancel>(options.BaseUrl + CancelUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Cancel> CreateAsync(CreateCancelRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Cancel>(options.BaseUrl + CancelUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Cancel>(options.BaseUrl + CancelUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

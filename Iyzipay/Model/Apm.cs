@@ -10,22 +10,22 @@ namespace Armut.Iyzipay.Model
 
         public static Apm Create(CreateApmInitializeRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Apm>(options.BaseUrl + ApmCreateUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Apm>(options.BaseUrl + ApmCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static Apm Retrieve(RetrieveApmRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Apm>(options.BaseUrl + ApmRetrieveUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Apm>(options.BaseUrl + ApmRetrieveUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Apm> CreateAsync(CreateApmInitializeRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Apm>(options.BaseUrl + ApmCreateUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Apm>(options.BaseUrl + ApmCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Apm> RetrieveAsync(RetrieveApmRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Apm>(options.BaseUrl + ApmRetrieveUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Apm>(options.BaseUrl + ApmRetrieveUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

@@ -12,12 +12,12 @@ namespace Armut.Iyzipay.Model
 
         public static PayoutCompletedTransactionList Retrieve(RetrieveTransactionsRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<PayoutCompletedTransactionList>(options.BaseUrl + PayoutCompletedTransactionListUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<PayoutCompletedTransactionList>(options.BaseUrl + PayoutCompletedTransactionListUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<PayoutCompletedTransactionList> RetrieveAsync(RetrieveTransactionsRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<PayoutCompletedTransactionList>(options.BaseUrl + PayoutCompletedTransactionListUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<PayoutCompletedTransactionList>(options.BaseUrl + PayoutCompletedTransactionListUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

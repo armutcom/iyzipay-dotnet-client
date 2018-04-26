@@ -11,12 +11,12 @@ namespace Armut.Iyzipay.Model
 
         public static PeccoPayment Create(CreatePeccoPaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<PeccoPayment> CreateAsync(CreatePeccoPaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<PeccoPayment>(options.BaseUrl + PeccoPaymentUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

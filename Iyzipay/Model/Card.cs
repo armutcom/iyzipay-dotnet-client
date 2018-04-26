@@ -21,22 +21,22 @@ namespace Armut.Iyzipay.Model
 
         public static Card Create(CreateCardRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Card> CreateAsync(CreateCardRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
         }
 
         public static Card Delete(DeleteCardRequest request, Options options)
         {
-            return RestHttpClient.Create().Delete<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Delete<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Card> DeleteAsync(DeleteCardRequest request, Options options)
         {
-            return await RestHttpClient.Create().DeleteAsync<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.DeleteAsync<Card>(options.BaseUrl + CardUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

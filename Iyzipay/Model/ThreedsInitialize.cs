@@ -13,7 +13,7 @@ namespace Armut.Iyzipay.Model
 
         public static ThreedsInitialize Create(CreatePaymentRequest request, Options options)
         {
-            ThreedsInitialize response = RestHttpClient.Create().Post<ThreedsInitialize>(options.BaseUrl + ThreedsInitializeUrl, GetHttpHeaders(request, options), request);
+            ThreedsInitialize response = RestHttpClient.Instance.Post<ThreedsInitialize>(options.BaseUrl + ThreedsInitializeUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {
@@ -24,7 +24,7 @@ namespace Armut.Iyzipay.Model
 
         public static async Task<ThreedsInitialize> CreateAsync(CreatePaymentRequest request, Options options)
         {
-            ThreedsInitialize response = await RestHttpClient.Create().PostAsync<ThreedsInitialize>(options.BaseUrl + ThreedsInitializeUrl, GetHttpHeaders(request, options), request);
+            ThreedsInitialize response = await RestHttpClient.Instance.PostAsync<ThreedsInitialize>(options.BaseUrl + ThreedsInitializeUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {

@@ -11,12 +11,12 @@ namespace Armut.Iyzipay.Model
 
         public static Approval Create(CreateApprovalRequest request, Options options)
         {
-            return  RestHttpClient.Create().Post<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
+            return  RestHttpClient.Instance.Post<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Approval> CreateAsync(CreateApprovalRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Approval>(options.BaseUrl + ApprovalUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

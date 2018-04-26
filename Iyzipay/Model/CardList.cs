@@ -13,12 +13,12 @@ namespace Armut.Iyzipay.Model
 
         public static CardList Retrieve(RetrieveCardListRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<CardList>(options.BaseUrl + CardListUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<CardList>(options.BaseUrl + CardListUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<CardList> RetrieveAsync(RetrieveCardListRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<CardList>(options.BaseUrl + CardListUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<CardList>(options.BaseUrl + CardListUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

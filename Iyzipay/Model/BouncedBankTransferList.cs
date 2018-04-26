@@ -14,12 +14,12 @@ namespace Armut.Iyzipay.Model
 
         public static BouncedBankTransferList Retrieve(RetrieveTransactionsRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BouncedBankTransferList>(options.BaseUrl + BouncedBankTransferListUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<BouncedBankTransferList>(options.BaseUrl + BouncedBankTransferListUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<BouncedBankTransferList> RetrieveAsync(RetrieveTransactionsRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<BouncedBankTransferList>(options.BaseUrl + BouncedBankTransferListUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<BouncedBankTransferList>(options.BaseUrl + BouncedBankTransferListUrl, GetHttpHeaders(request, options), request);
         }
     }
 }
