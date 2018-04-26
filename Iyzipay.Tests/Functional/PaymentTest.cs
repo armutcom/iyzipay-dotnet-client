@@ -171,5 +171,26 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.Null(payment.ErrorGroup);
             Assert.NotNull(payment.BasketId);
         }
+
+        [Test]
+        public async Task Should_Not_MakePayment_When_Price_And_PaidPrice_Are_Same()
+        {
+            CreateSubMerchantRequest createSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
+                .PersonalSubMerchantRequest()
+                .Build();
+
+            SubMerchant subMerchant = await SubMerchant.CreateAsync(createSubMerchantRequest, Options);
+
+            string subMerchantKey = subMerchant.SubMerchantKey;
+            CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
+                .MarketplacePaymentWithSamePrice(subMerchantKey)
+                .Build();
+
+            Payment payment = await Payment.CreateAsync(request, Options);
+
+            Assert.AreEqual(Status.FAILURE.ToString(), payment.Status);
+            Assert.NotNull(payment.ErrorCode);
+            Assert.NotNull(payment.ErrorMessage);
+        }
     }
 }
