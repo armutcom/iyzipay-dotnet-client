@@ -24,7 +24,7 @@ namespace Armut.Iyzipay
         {
         }
 
-        public static void SetTimeout(short seconds)
+        public void SetTimeout(short seconds)
         {
             HttpClient.Timeout = new TimeSpan(0, 0, seconds);
         }
