@@ -10,22 +10,22 @@ namespace Armut.Iyzipay.Model
 
         public static ThreedsPayment Create(CreateThreedsPaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<ThreedsPayment>(options.BaseUrl + ThreedsPaymentCreateUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<ThreedsPayment>(options.BaseUrl + ThreedsPaymentCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<ThreedsPayment> CreateAsync(CreateThreedsPaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<ThreedsPayment>(options.BaseUrl + ThreedsPaymentCreateUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<ThreedsPayment>(options.BaseUrl + ThreedsPaymentCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static ThreedsPayment Retrieve(RetrievePaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<ThreedsPayment>(options.BaseUrl + ThreedsPaymentRetrieveUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<ThreedsPayment>(options.BaseUrl + ThreedsPaymentRetrieveUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<ThreedsPayment> RetrieveAsync(RetrievePaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<ThreedsPayment>(options.BaseUrl + ThreedsPaymentRetrieveUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<ThreedsPayment>(options.BaseUrl + ThreedsPaymentRetrieveUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

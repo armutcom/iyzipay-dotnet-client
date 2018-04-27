@@ -12,12 +12,12 @@ namespace Armut.Iyzipay.Model
 
         public static InstallmentInfo Retrieve(RetrieveInstallmentInfoRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<InstallmentInfo>(options.BaseUrl + InstallmentInfoUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<InstallmentInfo>(options.BaseUrl + InstallmentInfoUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<InstallmentInfo> RetrieveAsync(RetrieveInstallmentInfoRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<InstallmentInfo>(options.BaseUrl + InstallmentInfoUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<InstallmentInfo>(options.BaseUrl + InstallmentInfoUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

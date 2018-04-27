@@ -13,7 +13,7 @@ namespace Armut.Iyzipay.Model
 
         public static BasicThreedsInitializePreAuth Create(CreateBasicPaymentRequest request, Options options)
         {
-            BasicThreedsInitializePreAuth response = RestHttpClient.Create().Post<BasicThreedsInitializePreAuth>(options.BaseUrl + BasicThreedsInitializePreAuthUrl, GetHttpHeaders(request, options), request);
+            BasicThreedsInitializePreAuth response = RestHttpClient.Instance.Post<BasicThreedsInitializePreAuth>(options.BaseUrl + BasicThreedsInitializePreAuthUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {
@@ -24,7 +24,7 @@ namespace Armut.Iyzipay.Model
 
         public static async Task<BasicThreedsInitializePreAuth> CreateAsync(CreateBasicPaymentRequest request, Options options)
         {
-            BasicThreedsInitializePreAuth response = await RestHttpClient.Create().PostAsync<BasicThreedsInitializePreAuth>(options.BaseUrl + BasicThreedsInitializePreAuthUrl, GetHttpHeaders(request, options), request);
+            BasicThreedsInitializePreAuth response = await RestHttpClient.Instance.PostAsync<BasicThreedsInitializePreAuth>(options.BaseUrl + BasicThreedsInitializePreAuthUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {

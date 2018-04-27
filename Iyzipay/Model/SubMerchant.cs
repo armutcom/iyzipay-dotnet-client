@@ -28,32 +28,32 @@ namespace Armut.Iyzipay.Model
 
         public static SubMerchant Create(CreateSubMerchantRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<SubMerchant> CreateAsync(CreateSubMerchantRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
         public static SubMerchant Update(UpdateSubMerchantRequest request, Options options)
         {
-            return RestHttpClient.Create().Put<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Put<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<SubMerchant> UpdateAsync(UpdateSubMerchantRequest request, Options options)
         {
-            return await RestHttpClient.Create().PutAsync<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PutAsync<SubMerchant>(options.BaseUrl + SubMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
         public static SubMerchant Retrieve(RetrieveSubMerchantRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<SubMerchant>(options.BaseUrl + SubMerchantRetrieveUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<SubMerchant>(options.BaseUrl + SubMerchantRetrieveUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<SubMerchant> RetrieveAsync(RetrieveSubMerchantRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<SubMerchant>(options.BaseUrl + SubMerchantRetrieveUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<SubMerchant>(options.BaseUrl + SubMerchantRetrieveUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

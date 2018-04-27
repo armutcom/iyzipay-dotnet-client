@@ -13,13 +13,13 @@ namespace Armut.Iyzipay.Model
 
         public static RefundChargedFromMerchant Create(CreateRefundRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<RefundChargedFromMerchant>(options.BaseUrl + RefundChargedFromMerchantUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<RefundChargedFromMerchant>(options.BaseUrl + RefundChargedFromMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
 
         public static async Task<RefundChargedFromMerchant> CreateAsync(CreateRefundRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<RefundChargedFromMerchant>(options.BaseUrl + RefundChargedFromMerchantUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<RefundChargedFromMerchant>(options.BaseUrl + RefundChargedFromMerchantUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

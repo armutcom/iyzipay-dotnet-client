@@ -9,12 +9,12 @@ namespace Armut.Iyzipay.Model
 
         public static BasicPaymentPreAuth Create(CreateBasicPaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BasicPaymentPreAuth>(options.BaseUrl + BasicPaymentPreAuthUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<BasicPaymentPreAuth>(options.BaseUrl + BasicPaymentPreAuthUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<BasicPaymentPreAuth> CreateAsync(CreateBasicPaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<BasicPaymentPreAuth>(options.BaseUrl + BasicPaymentPreAuthUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<BasicPaymentPreAuth>(options.BaseUrl + BasicPaymentPreAuthUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

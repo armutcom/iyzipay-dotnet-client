@@ -29,12 +29,12 @@ namespace Armut.Iyzipay.Model
 
         public static PaymentItem Update(UpdatePaymentItemRequest request, Options options)
         {
-            return RestHttpClient.Create().Put<PaymentItem>(options.BaseUrl + PaymentItemUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Put<PaymentItem>(options.BaseUrl + PaymentItemUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<PaymentItem> UpdateAsync(UpdatePaymentItemRequest request, Options options)
         {
-            return await RestHttpClient.Create().PutAsync<PaymentItem>(options.BaseUrl + PaymentItemUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PutAsync<PaymentItem>(options.BaseUrl + PaymentItemUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

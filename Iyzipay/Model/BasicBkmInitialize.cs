@@ -12,7 +12,7 @@ namespace Armut.Iyzipay.Model
         
         public static BasicBkmInitialize Create(CreateBasicBkmInitializeRequest request, Options options)
         {
-            BasicBkmInitialize response = RestHttpClient.Create().Post<BasicBkmInitialize>(options.BaseUrl + BasicBkmInitializeUrl, GetHttpHeaders(request, options), request);
+            BasicBkmInitialize response = RestHttpClient.Instance.Post<BasicBkmInitialize>(options.BaseUrl + BasicBkmInitializeUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {
@@ -23,7 +23,7 @@ namespace Armut.Iyzipay.Model
 
         public static async Task<BasicBkmInitialize> CreateAsync(CreateBasicBkmInitializeRequest request, Options options)
         {
-            BasicBkmInitialize response = await RestHttpClient.Create().PostAsync<BasicBkmInitialize>(options.BaseUrl + BasicBkmInitializeUrl, GetHttpHeaders(request, options), request);
+            BasicBkmInitialize response = await RestHttpClient.Instance.PostAsync<BasicBkmInitialize>(options.BaseUrl + BasicBkmInitializeUrl, GetHttpHeaders(request, options), request);
 
             if (response != null)
             {

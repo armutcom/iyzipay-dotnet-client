@@ -8,12 +8,12 @@ namespace Armut.Iyzipay.Model
 
         public static IyzipayResource Retrieve(Options options)
         {
-            return RestHttpClient.Create().Get<IyzipayResource>(options.BaseUrl + ApiTestUrl);
+            return RestHttpClient.Instance.Get<IyzipayResource>(options.BaseUrl + ApiTestUrl);
         }
 
         public static async Task<IyzipayResource> RetrieveAsync(Options options)
         {
-            return await RestHttpClient.Create().GetAsync<IyzipayResource>(options.BaseUrl + ApiTestUrl);
+            return await RestHttpClient.Instance.GetAsync<IyzipayResource>(options.BaseUrl + ApiTestUrl);
         }
     }
 }

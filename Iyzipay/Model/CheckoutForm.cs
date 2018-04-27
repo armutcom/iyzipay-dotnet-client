@@ -12,12 +12,12 @@ namespace Armut.Iyzipay.Model
 
         public static CheckoutForm Retrieve(RetrieveCheckoutFormRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<CheckoutForm> RetrieveAsync(RetrieveCheckoutFormRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<CheckoutForm>(options.BaseUrl + CheckoutFormUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

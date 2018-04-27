@@ -18,12 +18,12 @@ namespace Armut.Iyzipay.Model
 
         public static BinNumber Retrieve(RetrieveBinNumberRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<BinNumber> RetrieveAsync(RetrieveBinNumberRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<BinNumber>(options.BaseUrl + BinNumberUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

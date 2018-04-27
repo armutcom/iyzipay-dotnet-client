@@ -15,12 +15,12 @@ namespace Armut.Iyzipay.Model
 
         public static Refund Create(CreateRefundRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Refund>(options.BaseUrl + RefundUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Refund>(options.BaseUrl + RefundUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Refund> CreateAsync(CreateRefundRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Refund>(options.BaseUrl + RefundUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Refund>(options.BaseUrl + RefundUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

@@ -13,12 +13,12 @@ namespace Armut.Iyzipay.Model
 
         public static BasicBkm Retrieve(RetrieveBkmRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BasicBkm>(options.BaseUrl + BasicBkmUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<BasicBkm>(options.BaseUrl + BasicBkmUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<BasicBkm> RetrieveAsync(RetrieveBkmRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<BasicBkm>(options.BaseUrl + BasicBkmUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<BasicBkm>(options.BaseUrl + BasicBkmUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

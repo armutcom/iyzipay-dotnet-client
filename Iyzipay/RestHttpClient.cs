@@ -8,6 +8,8 @@ namespace Armut.Iyzipay
 {
     public class RestHttpClient
     {
+        public static readonly RestHttpClient Instance = new RestHttpClient();
+
         private static readonly HttpClient HttpClient;
 
         static RestHttpClient()
@@ -22,12 +24,7 @@ namespace Armut.Iyzipay
         {
         }
 
-        public static RestHttpClient Create()
-        {
-            return new RestHttpClient();
-        }
-
-        public static void SetTimeout(short seconds)
+        public void SetTimeout(short seconds)
         {
             HttpClient.Timeout = new TimeSpan(0, 0, seconds);
         }

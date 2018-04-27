@@ -9,12 +9,12 @@ namespace Armut.Iyzipay.Model
 
         public static CrossBookingFromSubMerchant Create(CreateCrossBookingRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<CrossBookingFromSubMerchant>(options.BaseUrl + CrossBookingFromSubMerchantUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<CrossBookingFromSubMerchant>(options.BaseUrl + CrossBookingFromSubMerchantUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<CrossBookingFromSubMerchant> CreateAsync(CreateCrossBookingRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<CrossBookingFromSubMerchant>(options.BaseUrl + CrossBookingFromSubMerchantUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<CrossBookingFromSubMerchant>(options.BaseUrl + CrossBookingFromSubMerchantUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

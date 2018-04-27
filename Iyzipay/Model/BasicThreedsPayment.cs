@@ -9,12 +9,12 @@ namespace Armut.Iyzipay.Model
 
         public static BasicThreedsPayment Create(CreateThreedsPaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<BasicThreedsPayment>(options.BaseUrl + BasicThreedsPaymentUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<BasicThreedsPayment>(options.BaseUrl + BasicThreedsPaymentUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<BasicThreedsPayment> CreateAsync(CreateThreedsPaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<BasicThreedsPayment>(options.BaseUrl + BasicThreedsPaymentUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<BasicThreedsPayment>(options.BaseUrl + BasicThreedsPaymentUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

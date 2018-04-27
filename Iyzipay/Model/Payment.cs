@@ -10,22 +10,22 @@ namespace Armut.Iyzipay.Model
 
         public static Payment Create(CreatePaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Payment>(options.BaseUrl + PaymentCreateUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Payment>(options.BaseUrl + PaymentCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Payment> CreateAsync(CreatePaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Payment>(options.BaseUrl + PaymentCreateUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Payment>(options.BaseUrl + PaymentCreateUrl, GetHttpHeaders(request, options), request);
         }
 
         public static Payment Retrieve(RetrievePaymentRequest request, Options options)
         {
-            return RestHttpClient.Create().Post<Payment>(options.BaseUrl + PaymentRetrieveUrl, GetHttpHeaders(request, options), request);
+            return RestHttpClient.Instance.Post<Payment>(options.BaseUrl + PaymentRetrieveUrl, GetHttpHeaders(request, options), request);
         }
 
         public static async Task<Payment> RetrieveAsync(RetrievePaymentRequest request, Options options)
         {
-            return await RestHttpClient.Create().PostAsync<Payment>(options.BaseUrl + PaymentRetrieveUrl, GetHttpHeaders(request, options), request);
+            return await RestHttpClient.Instance.PostAsync<Payment>(options.BaseUrl + PaymentRetrieveUrl, GetHttpHeaders(request, options), request);
         }
     }
 }

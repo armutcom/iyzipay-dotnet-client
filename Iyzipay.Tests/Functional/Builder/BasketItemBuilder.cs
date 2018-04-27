@@ -116,5 +116,21 @@ namespace Armut.Iyzipay.Tests.Functional.Builder
             };
             return basketItems;
         }
+
+        public List<BasketItem> BuildBasketItemsWithSubmetchantKeyAndSamePrice(string subMerchantKey)
+        {
+            return new List<BasketItem>
+            {
+                Create()
+                    .Price("0.3")
+                    .Category2(null).SubMerchantKey(subMerchantKey)
+                    .SubMerchantPrice("0.3")
+                    .Build(),
+                Create().Price("0.5")
+                    .Category2(null).SubMerchantKey(subMerchantKey)
+                    .SubMerchantPrice("0.5")
+                    .Build()
+            };
+        }
     }
 }
