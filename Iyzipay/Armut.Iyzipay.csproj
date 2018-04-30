@@ -5,7 +5,7 @@
 		<AssemblyName>Armut.Iyzipay</AssemblyName>
 		<RootNamespace>Armut.Iyzipay</RootNamespace>
 
-		<Version>2.1.15</Version>
+		<Version>2.2.0</Version>
 		<Title>Armut Iyzipay Client</Title>
 		<Authors>Armut Teknoloji A.Ş.</Authors>
 		<Owners>Armut Teknoloji A.Ş.</Owners>
