@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using Armut.Iyzipay.Helper;
 using Newtonsoft.Json;
 
 namespace Armut.Iyzipay
@@ -31,15 +33,15 @@ namespace Armut.Iyzipay
 
         public async Task<T> GetAsync<T>(string url)
         {
-            HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(url);
-            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            HttpResponseMessage httpResponseMessage = await HttpClient.GetAsync(url).ConfigureAwait(false);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<T>(strContent);
         }
 
         public T Get<T>(string url)
         {
-            return GetAsync<T>(url).Result;
+            return AsyncHelper.RunSync(() => GetAsync<T>(url));
         }
 
         public async Task<T> PostAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -56,15 +58,15 @@ namespace Armut.Iyzipay
                 requestMessage.Headers.Add(key, headers[key]);
             }
 
-            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
-            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<T>(strContent);
         }
 
         public T Post<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return PostAsync<T>(url, headers, request).Result;
+            return AsyncHelper.RunSync(() => PostAsync<T>(url, headers, request));
         }
 
         public async Task<T> DeleteAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -81,14 +83,14 @@ namespace Armut.Iyzipay
                 requestMessage.Headers.Add(key, headers[key]);
             }
 
-            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
-            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(strContent);
         }
 
         public T Delete<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return DeleteAsync<T>(url, headers, request).Result;
+            return AsyncHelper.RunSync(() => DeleteAsync<T>(url, headers, request));
         }
 
         public async Task<T> PutAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -105,15 +107,14 @@ namespace Armut.Iyzipay
                 requestMessage.Headers.Add(key, headers[key]);
             }
 
-            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage);
-            string strContent = await httpResponseMessage.Content.ReadAsStringAsync();
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(strContent);
         }
 
         public T Put<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return PutAsync<T>(url, headers, request).Result;
+            return AsyncHelper.RunSync(() => PutAsync<T>(url, headers, request));
         }
     }
 }
-
