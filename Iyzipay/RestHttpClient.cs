@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
-using Armut.Iyzipay.Helper;
 using Newtonsoft.Json;
 
 namespace Armut.Iyzipay
@@ -41,7 +39,7 @@ namespace Armut.Iyzipay
 
         public T Get<T>(string url)
         {
-            return AsyncHelper.RunSync(() => GetAsync<T>(url));
+            return GetAsync<T>(url).GetAwaiter().GetResult();
         }
 
         public async Task<T> PostAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -66,7 +64,7 @@ namespace Armut.Iyzipay
 
         public T Post<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return AsyncHelper.RunSync(() => PostAsync<T>(url, headers, request));
+            return PostAsync<T>(url, headers, request).GetAwaiter().GetResult();
         }
 
         public async Task<T> DeleteAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -90,7 +88,7 @@ namespace Armut.Iyzipay
 
         public T Delete<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return AsyncHelper.RunSync(() => DeleteAsync<T>(url, headers, request));
+            return DeleteAsync<T>(url, headers, request).GetAwaiter().GetResult();
         }
 
         public async Task<T> PutAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)
@@ -114,7 +112,7 @@ namespace Armut.Iyzipay
 
         public T Put<T>(string url, WebHeaderCollection headers, BaseRequest request)
         {
-            return AsyncHelper.RunSync(() => PutAsync<T>(url, headers, request));
+            return PutAsync<T>(url, headers, request).GetAwaiter().GetResult();
         }
     }
 }
