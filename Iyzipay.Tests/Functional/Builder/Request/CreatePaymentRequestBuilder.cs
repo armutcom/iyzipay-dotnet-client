@@ -180,6 +180,13 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return this;
         }
 
+        public CreatePaymentRequestBuilder MarketplacePayment(string subMerchantKey, string price, string subMerchantPrice)
+        {
+            _basketItems = BasketItemBuilder.Create().BuildBasketItem(subMerchantKey, price, subMerchantPrice);
+            _paymentGroup = Model.PaymentGroup.PRODUCT.ToString();
+            return this;
+        }
+
         public CreatePaymentRequestBuilder StandardListingPayment()
         {
             _basketItems = BasketItemBuilder.Create().BuildDefaultBasketItems();

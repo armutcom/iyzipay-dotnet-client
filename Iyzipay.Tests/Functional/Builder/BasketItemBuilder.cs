@@ -132,5 +132,19 @@ namespace Armut.Iyzipay.Tests.Functional.Builder
                     .Build()
             };
         }
+
+        public List<BasketItem> BuildBasketItem(string submerchantKey, string price, string subMerchantPrice)
+        {
+            List<BasketItem> basketItems = new List<BasketItem>
+            {
+                Create()
+                    .Price(price)
+                    .SubMerchantPrice(subMerchantPrice)
+                    .SubMerchantKey(submerchantKey)
+                    .Build()
+            };
+
+            return basketItems;
+        }
     }
 }
