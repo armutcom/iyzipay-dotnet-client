@@ -12,7 +12,7 @@
                 .AppendSuper(base.ToPKIRequestString())
                 .Append("subMerchantKey", SubMerchantKey)
                 .Append("paymentTransactionId", PaymentTransactionId)
-                .Append("subMerchantPrice", SubMerchantPrice)
+                .AppendPrice("subMerchantPrice", SubMerchantPrice)
                 .GetRequestString();
         }
     }
