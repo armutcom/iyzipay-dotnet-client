@@ -1,8 +1,8 @@
-# iyzipay-dotnet
+# Iyzipay Client Library for .Net Framework and .Net Core
 
 Unofficial Iyzipay client library that maintained by [Armut.com](https://armut.com/), fork of the [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet)
 
-Supports .NET Framework, .NET Core 1.1 and .NET Core 2.0 runtimes,
+Supports .NET Framework, .NET Core 1.1, .NET Core 2.0 runtimes, .NET Core 2.1 runtimes
 
 You can sign up for an iyzico account at https://iyzico.com
 
