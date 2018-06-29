@@ -4,6 +4,7 @@ namespace Armut.Iyzipay.Model
 {
     public class BankTransfer
     {
+        public string PaymentTransactionId { get; set; }
         public string SubMerchantKey { get; set; }
         public string Iban { get; set; }
         public string ContactName { get; set; }
