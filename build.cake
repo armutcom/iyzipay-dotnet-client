@@ -69,6 +69,7 @@ Task("Test")
         settings.Framework = netCoreTarget21;
         DotNetCoreTest(testProjectPath, settings);
 
+        Information($"Running {fullFrameworkTarget.ToUpper()} Tests");
         if(!isRunningOnUnix) // Windows
         {
             settings.Framework = fullFrameworkTarget;

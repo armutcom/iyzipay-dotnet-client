@@ -1,17 +1,12 @@
 language: csharp  
 sudo: required  
 dist: trusty
-# OS X 10.12
-osx_image: xcode9.2
 env:  
   - CLI_VERSION=latest
 mono:  
   - 5.10.0
-dotnet:
-  - 1.1.5  
-  - 2.1.400
+dotnet: 2.1.400
 os:
-  - osx
   - linux
 branches:  
   only:
@@ -19,8 +14,12 @@ branches:
     - /.*/
 before_script:
 - chmod +x ./build.sh
+- curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+- sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+- sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main" > /etc/apt/sources.list.d/dotnetdev.list'
+- sudo apt-get update
+- sudo apt-get install dotnet-dev-1.1.9
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install nuget; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo apt install nuget; fi
+  - sudo apt install nuget
 script:  
   - ./build.sh
