@@ -1,34 +1,78 @@
 #!/usr/bin/env bash
 
-#exit if any command fails
-set -e
+##########################################################################
+# This is the Cake bootstrapper script for Linux and OS X.
+# This file is based on https://github.com/cake-build/resources modified for Cake.CoreCLR 
+# Feel free to change this file to fit your needs.
+##########################################################################
 
-export FrameworkPathOverride=$(dirname $(which mono))/../lib/mono/4.5/
+CAKE_VERSION=0.29.0
 
-dotnet restore Armut.Iyzipay.sln
+# Define directories.
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+TOOLS_DIR=$SCRIPT_DIR/tools
+CAKE_ROOT= $TOOLS_DIR/cake.coreclr/
+CAKE_EXE=$TOOLS_DIR/cake.coreclr/Cake.dll
 
-# Linux/Darwin
-OSNAME=$(uname -s)
-echo "OSNAME: $OSNAME"
+# Define default arguments.
+SCRIPT="build.cake"
+TARGET="Default"
+CONFIGURATION="Release"
+VERBOSITY="verbose"
+DRYRUN=
+SHOW_VERSION=false
+CAKE_ARGUMENTS=()
 
-dotnet build ./Iyzipay.Tests/Armut.Iyzipay.Tests.csproj /p:Configuration=Release || exit 1
+# Parse arguments.
+for i in "$@"; do
+    case $1 in
+        -s|--script) SCRIPT="$2"; shift ;;
+        --) shift; CAKE_ARGUMENTS+=("$@"); break ;;
+        *) CAKE_ARGUMENTS+=("$1") ;;
+    esac
+    shift
+done
 
-sudo nuget install NUnit.ConsoleRunner -OutputDirectory testrunner
+# Make sure that dotnet core installed.
+if ! [ -x "$(command -v dotnet)" ]; then
+  echo 'Error: dotnet is not installed.' >&2
+  exit 1
+fi
 
-echo --------------------
-echo Running NET45 Tests
-echo --------------------
+# Install cake if its not installed
+if [ ! -f "$CAKE_EXE" ]; then
 
-mono ./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe ./Iyzipay.Tests/bin/Release/net45/Armut.Iyzipay.Tests.dll
+    # Make sure the tools folder exist.
+    if [ ! -d "$TOOLS_DIR" ]; then
+    mkdir "$TOOLS_DIR"
+    fi
 
-echo --------------------
-echo Running NETCORE2 Tests
-echo --------------------
+    # Make sure that tools.csproj exist.
+    if [ ! -f "$TOOLS_DIR/tools.csproj" ]; then
+        echo "Creating tools.csproj..."
+        echo "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><OutputType>Exe</OutputType><TargetFramework>netcoreapp2.0</TargetFramework></PropertyGroup></Project>" > $TOOLS_DIR/tools.csproj
+        if [ $? -ne 0 ]; then
+            echo "An error occurred while creating tools.csproj."
+            exit 1
+        fi
+    fi
 
-dotnet test ./Iyzipay.Tests -c Release -f netcoreapp2.0
+    # Add dependencies
+    dotnet add $TOOLS_DIR/tools.csproj package Cake.CoreCLR -v $CAKE_VERSION --package-directory $TOOLS_DIR
+    mv $TOOLS_DIR/cake.coreclr/$CAKE_VERSION/* $TOOLS_DIR/cake.coreclr/
+    rm -rf $TOOLS_DIR/cake.coreclr/$CAKE_VERSION/
+    rm -f $TOOLS_DIR/tools.csproj
+fi
 
-echo --------------------
-echo Running NETCORE1 Tests
-echo --------------------
+# Make sure that Cake has been installed.
+if [ ! -f "$CAKE_EXE" ]; then
+    echo "Could not find Cake.exe at '$CAKE_EXE'."
+    exit 1
+fi
 
-dotnet test ./Iyzipay.Tests -c Release -f netcoreapp1.1
+# Start Cake
+if $SHOW_VERSION; then
+    dotnet $TOOLS_DIR/cake.coreclr/Cake.dll -version
+else
+    dotnet $TOOLS_DIR/cake.coreclr/Cake.dll $SCRIPT "${CAKE_ARGUMENTS[@]}"
+fi
