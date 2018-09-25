@@ -1,12 +1,17 @@
 language: csharp  
 sudo: required  
-dist: trusty  
+dist: trusty
+# OS X 10.12
+osx_image: xcode9.2
 env:  
   - CLI_VERSION=latest
 mono:  
   - 5.10.0
-dotnet:  2.0.0
-os:  
+dotnet:
+  - 1.1.5  
+  - 2.1.400
+os:
+  - osx
   - linux
 branches:  
   only:
@@ -15,13 +20,7 @@ branches:
 before_script:
 - chmod +x ./build.sh
 before_install:
-  - sudo apt install nuget
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install nuget; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo apt install nuget; fi
 script:  
   - ./build.sh
-addons:
-  apt:
-    sources:
-    - sourceline: 'deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ trusty main'
-      key_url: 'https://apt-mo.trafficmanager.net/keys/microsoft.asc'
-    packages:
-    - dotnet-dev-1.1.4
