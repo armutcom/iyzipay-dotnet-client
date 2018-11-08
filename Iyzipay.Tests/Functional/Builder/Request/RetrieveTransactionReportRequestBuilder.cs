@@ -15,11 +15,7 @@ namespace Armut.Iyzipay.Tests.Functional.Builder.Request
             return new RetrieveTransactionReportRequest
             {
                 ConversationId = "123456789",
-#if NETCORE1
                 TransactionDate = "2018-09-09",
-#else
-                TransactionDate = DateTime.Now.ToShortDateString(),
-#endif
                 Page = 1
             };
         }

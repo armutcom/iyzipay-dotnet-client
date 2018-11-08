@@ -19,10 +19,10 @@ namespace Armut.Iyzipay.Tests.Functional
             PrintResponse(transactionReport);
 
             Assert.AreEqual(Status.SUCCESS.ToString(), transactionReport.Status);
-            Assert.AreEqual(200, transactionReport.StatusCode);
-            Assert.AreEqual("123", transactionReport.ConversationId);
-            Assert.AreEqual(1, transactionReport.CurrentPage);
-            Assert.IsNotNull(transactionReport.TotalPageCount);
+            Assert.AreEqual(0, transactionReport.StatusCode);
+            Assert.IsNull(transactionReport.ConversationId);
+            Assert.IsNull(transactionReport.CurrentPage);
+            Assert.IsNull(transactionReport.TotalPageCount);
             Assert.IsNotNull(transactionReport.SystemTime);
             Assert.IsNull(transactionReport.ErrorMessage);
         }
