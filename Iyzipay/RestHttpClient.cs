@@ -37,9 +37,33 @@ namespace Armut.Iyzipay
             return JsonConvert.DeserializeObject<T>(strContent);
         }
 
+        public async Task<T> GetAsync<T>(string url, WebHeaderCollection headers)
+        {
+            HttpRequestMessage requestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url, UriKind.Absolute)
+            };
+
+            foreach (string key in headers.AllKeys)
+            {
+                requestMessage.Headers.Add(key, headers[key]);
+            }
+
+            HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
+            string strContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+            return JsonConvert.DeserializeObject<T>(strContent);
+        }
+        
         public T Get<T>(string url)
         {
             return GetAsync<T>(url).GetAwaiter().GetResult();
+        }
+
+        public T Get<T>(string url, WebHeaderCollection headers)
+        {
+            return GetAsync<T>(url,headers).GetAwaiter().GetResult();
         }
 
         public async Task<T> PostAsync<T>(string url, WebHeaderCollection headers, BaseRequest request)

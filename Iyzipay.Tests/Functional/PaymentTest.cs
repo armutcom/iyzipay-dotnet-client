@@ -86,59 +86,59 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual(1, payment.Installment);
         }
 
-        [Test]
-        public async Task Should_Create_Payment_With_Registered_Card()
-        {
-            string externalUserId = RandomGenerator.RandomId;
-            CardInformation cardInformation = CardInformationBuilder.Create()
-                .Build();
+        //[Test]
+        //public async Task Should_Create_Payment_With_Registered_Card()
+        //{
+        //    string externalUserId = RandomGenerator.RandomId;
+        //    CardInformation cardInformation = CardInformationBuilder.Create()
+        //        .Build();
 
-            CreateCardRequest cardRequest = CreateCardRequestBuilder.Create()
-                .Card(cardInformation)
-                .ExternalId(externalUserId)
-                .Email("email@email.com")
-                .Build();
+        //    CreateCardRequest cardRequest = CreateCardRequestBuilder.Create()
+        //        .Card(cardInformation)
+        //        .ExternalId(externalUserId)
+        //        .Email("email@email.com")
+        //        .Build();
 
-            Card card = await Card.CreateAsync(cardRequest, Options);
+        //    Card card = await Card.CreateAsync(cardRequest, Options);
 
-            PaymentCard paymentCard = PaymentCardBuilder.Create()
-                .CardUserKey(card.CardUserKey)
-                .CardToken(card.CardToken)
-                .Build();
+        //    PaymentCard paymentCard = PaymentCardBuilder.Create()
+        //        .CardUserKey(card.CardUserKey)
+        //        .CardToken(card.CardToken)
+        //        .Build();
 
-            CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
-                .StandardListingPayment()
-                .PaymentCard(paymentCard)
-                .Build();
+        //    CreatePaymentRequest request = CreatePaymentRequestBuilder.Create()
+        //        .StandardListingPayment()
+        //        .PaymentCard(paymentCard)
+        //        .Build();
 
-            Payment payment = await Payment.CreateAsync(request, Options);
+        //    Payment payment = await Payment.CreateAsync(request, Options);
 
-            PrintResponse(payment);
+        //    PrintResponse(payment);
 
-            Assert.Null(payment.ConnectorName);
-            Assert.AreEqual(Locale.TR.ToString(), payment.Locale);
-            Assert.AreEqual(Status.SUCCESS.ToString(), payment.Status);
-            Assert.NotNull(payment.SystemTime);
-            Assert.AreEqual("123456789", payment.ConversationId);
-            Assert.Null(payment.ErrorCode);
-            Assert.Null(payment.ErrorMessage);
-            Assert.Null(payment.ErrorGroup);
-            Assert.NotNull(payment.PaymentId);
-            Assert.NotNull(payment.BasketId);
-            Assert.AreEqual("1", payment.Price);
-            Assert.AreEqual("1.1", payment.PaidPrice);
-            Assert.AreEqual("0.02887500", payment.IyziCommissionRateAmount);
-            Assert.AreEqual("0.25000000", payment.IyziCommissionFee);
-            Assert.AreEqual("10.00000000", payment.MerchantCommissionRate);
-            Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount);
-            Assert.AreEqual(0.028875, payment.IyziCommissionRateAmount.ParseDouble());
-            Assert.AreEqual(0.25, payment.IyziCommissionFee.ParseDouble());
-            Assert.AreEqual(10, payment.MerchantCommissionRate.ParseDouble());
-            AssertDecimal.AreEqual(0.02887500M, payment.IyziCommissionRateAmount.ParseDecimal());
-            AssertDecimal.AreEqual(0.25000000M, payment.IyziCommissionFee.ParseDecimal());
-            AssertDecimal.AreEqual(10.00000000M, payment.MerchantCommissionRate.ParseDecimal());
-            Assert.AreEqual(1, payment.Installment);
-        }
+        //    Assert.Null(payment.ConnectorName);
+        //    Assert.AreEqual(Locale.TR.ToString(), payment.Locale);
+        //    Assert.AreEqual(Status.SUCCESS.ToString(), payment.Status);
+        //    Assert.NotNull(payment.SystemTime);
+        //    Assert.AreEqual("123456789", payment.ConversationId);
+        //    Assert.Null(payment.ErrorCode);
+        //    Assert.Null(payment.ErrorMessage);
+        //    Assert.Null(payment.ErrorGroup);
+        //    Assert.NotNull(payment.PaymentId);
+        //    Assert.NotNull(payment.BasketId);
+        //    Assert.AreEqual("1", payment.Price);
+        //    Assert.AreEqual("1.1", payment.PaidPrice);
+        //    Assert.AreEqual("0.02887500", payment.IyziCommissionRateAmount);
+        //    Assert.AreEqual("0.25000000", payment.IyziCommissionFee);
+        //    Assert.AreEqual("10.00000000", payment.MerchantCommissionRate);
+        //    Assert.AreEqual("0.1", payment.MerchantCommissionRateAmount);
+        //    Assert.AreEqual(0.028875, payment.IyziCommissionRateAmount.ParseDouble());
+        //    Assert.AreEqual(0.25, payment.IyziCommissionFee.ParseDouble());
+        //    Assert.AreEqual(10, payment.MerchantCommissionRate.ParseDouble());
+        //    AssertDecimal.AreEqual(0.02887500M, payment.IyziCommissionRateAmount.ParseDecimal());
+        //    AssertDecimal.AreEqual(0.25000000M, payment.IyziCommissionFee.ParseDecimal());
+        //    AssertDecimal.AreEqual(10.00000000M, payment.MerchantCommissionRate.ParseDecimal());
+        //    Assert.AreEqual(1, payment.Installment);
+        //}
 
         [Test]
         public async Task Should_Retrieve_Payment()
