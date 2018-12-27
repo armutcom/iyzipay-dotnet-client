@@ -12,6 +12,8 @@ namespace Armut.Iyzipay.Model
         public string Price { get; set; }
         public string Currency { get; set; }
         public string ConnectorName { get; set; }
+        public string AuthCode { get; set; }
+        public string HostReference { get; set; }
 
         public static Refund Create(CreateRefundRequest request, Options options)
         {
