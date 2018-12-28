@@ -27,6 +27,7 @@ namespace Armut.Iyzipay.Model
         public List<PaymentItem> PaymentItems { get; set; }
         public string ConnectorName { get; set; }
         public string AuthCode { get; set; }
+        public string HostReference { get; set; }
         public string Phase { get; set; }
     }
 }
