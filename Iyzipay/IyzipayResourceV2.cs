@@ -75,7 +75,7 @@ namespace Armut.Iyzipay
         {
             string randomKey = GenerateRandomKey();
             string uriPath = FindUriPath(url);
-            string payload = request != null ? uriPath + JsonBuilder.SerializeToJsonString(request) : uriPath;
+            string payload = request != null ? uriPath + JsonBuilder.SerializeObjectToPrettyJson(request) : uriPath;
             string dataToEncrypt = randomKey + payload;
             string hash = HashGeneratorV2.GenerateHash(options.ApiKey, options.SecretKey, randomKey, dataToEncrypt);
 
