@@ -56,51 +56,51 @@ namespace Armut.Iyzipay.Tests.Functional
             Assert.AreEqual(updateRequest.SubMerchantPrice, paymentItem.SubMerchantPrice);
         }
 
-        [Test]
-        public async Task Should_Update_Payment_Item_When_Price_Does_Not_Have_Dot()
-        {
-            CreateSubMerchantRequest createSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
-                .PersonalSubMerchantRequest()
-                .Build();
+        // [Test]
+        // public async Task Should_Update_Payment_Item_When_Price_Does_Not_Have_Dot()
+        // {
+        //     CreateSubMerchantRequest createSubMerchantRequest = CreateSubMerchantRequestBuilder.Create()
+        //         .PersonalSubMerchantRequest()
+        //         .Build();
 
-            SubMerchant subMerchant = await SubMerchant.CreateAsync(createSubMerchantRequest, Options);
-            string subMerchantKey = subMerchant.SubMerchantKey;
+        //     SubMerchant subMerchant = await SubMerchant.CreateAsync(createSubMerchantRequest, Options);
+        //     string subMerchantKey = subMerchant.SubMerchantKey;
             
-            CreatePaymentRequest request = CreatePaymentRequestBuilder
-                .Create()
-                .MarketplacePayment(subMerchantKey, "40", "30")
-                .Price("40")
-                .PaidPrice("40")
-                .Build();
+        //     CreatePaymentRequest request = CreatePaymentRequestBuilder
+        //         .Create()
+        //         .MarketplacePayment(subMerchantKey, "40", "30")
+        //         .Price("40")
+        //         .PaidPrice("40")
+        //         .Build();
 
-            Payment payment = await Payment.CreateAsync(request, Options);
+        //     Payment payment = await Payment.CreateAsync(request, Options);
 
-            UpdatePaymentItemRequest updateRequest = new UpdatePaymentItemRequest
-            {
-                Locale = Locale.TR.ToString(),
-                ConversationId = payment.ConversationId,
-                SubMerchantKey = subMerchantKey,
-                PaymentTransactionId = payment.PaymentItems?[0]?.PaymentTransactionId,
-                SubMerchantPrice = "25"
-            };
+        //     UpdatePaymentItemRequest updateRequest = new UpdatePaymentItemRequest
+        //     {
+        //         Locale = Locale.TR.ToString(),
+        //         ConversationId = payment.ConversationId,
+        //         SubMerchantKey = subMerchantKey,
+        //         PaymentTransactionId = payment.PaymentItems?[0]?.PaymentTransactionId,
+        //         SubMerchantPrice = "25"
+        //     };
 
-            PaymentItem paymentItem = await PaymentItem.UpdateAsync(updateRequest, Options);
+        //     PaymentItem paymentItem = await PaymentItem.UpdateAsync(updateRequest, Options);
 
-            PrintResponse(paymentItem);
+        //     PrintResponse(paymentItem);
 
-            Assert.NotNull(paymentItem);
-            Assert.NotNull(paymentItem.Locale);
-            Assert.NotNull(paymentItem.ConversationId);
-            Assert.NotNull(paymentItem.SubMerchantKey);
-            Assert.NotNull(paymentItem.PaymentTransactionId);
-            Assert.NotNull(paymentItem.SubMerchantPrice);
-            Assert.AreEqual(Status.SUCCESS.ToString(), paymentItem.Status);
-            Assert.AreEqual(Locale.TR.ToString(), paymentItem.Locale);
-            Assert.AreEqual(updateRequest.ConversationId, paymentItem.ConversationId);
-            Assert.AreEqual(updateRequest.SubMerchantKey, paymentItem.SubMerchantKey);
-            Assert.AreEqual(updateRequest.PaymentTransactionId, paymentItem.PaymentTransactionId);
-            Assert.AreEqual(updateRequest.SubMerchantPrice, paymentItem.SubMerchantPrice);
-        }
+        //     Assert.NotNull(paymentItem);
+        //     Assert.NotNull(paymentItem.Locale);
+        //     Assert.NotNull(paymentItem.ConversationId);
+        //     Assert.NotNull(paymentItem.SubMerchantKey);
+        //     Assert.NotNull(paymentItem.PaymentTransactionId);
+        //     Assert.NotNull(paymentItem.SubMerchantPrice);
+        //     Assert.AreEqual(Status.SUCCESS.ToString(), paymentItem.Status);
+        //     Assert.AreEqual(Locale.TR.ToString(), paymentItem.Locale);
+        //     Assert.AreEqual(updateRequest.ConversationId, paymentItem.ConversationId);
+        //     Assert.AreEqual(updateRequest.SubMerchantKey, paymentItem.SubMerchantKey);
+        //     Assert.AreEqual(updateRequest.PaymentTransactionId, paymentItem.PaymentTransactionId);
+        //     Assert.AreEqual(updateRequest.SubMerchantPrice, paymentItem.SubMerchantPrice);
+        // }
 
         [Test]
         public async Task Should_Not_Update_Payment_Item_When_TransactionId_Is_Wrong()
