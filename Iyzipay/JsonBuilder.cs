@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Globalization;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -29,6 +31,31 @@ namespace Armut.Iyzipay
             });
         }
 
+        public static string SerializeObjectToPrettyJson(BaseRequestV2 value)
+        {
+            StringBuilder sb = new StringBuilder(256);
+            StringWriter sw = new StringWriter(sb, CultureInfo.InvariantCulture);
+
+            var jsonSerializer = JsonSerializer.CreateDefault();
+            jsonSerializer.NullValueHandling = NullValueHandling.Ignore;
+            jsonSerializer.DefaultValueHandling = DefaultValueHandling.Ignore;
+            jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonSerializer.Formatting = Formatting.Indented;
+
+            using (JsonTextWriter jsonWriter = new JsonTextWriter(sw)
+            {
+                Formatting = Formatting.Indented,
+                IndentChar = '\t',
+                Indentation = 1
+            })
+            {
+                jsonSerializer.Serialize(jsonWriter, value, typeof(BaseRequestV2));
+            }
+
+            string json = sw.ToString();
+            return json.Replace("\r", "");
+        }
+
         public static StringContent ToJsonString(BaseRequest request)
         {
             return new StringContent(SerializeToJsonString(request), Encoding.Unicode, "application/json");
@@ -36,7 +63,7 @@ namespace Armut.Iyzipay
 
         public static StringContent ToJsonString(BaseRequestV2 request)
         {
-            return new StringContent(SerializeToJsonString(request), Encoding.Unicode, "application/json");
+            return new StringContent(SerializeObjectToPrettyJson(request), Encoding.UTF8, "application/json");
         }
     }
 }
