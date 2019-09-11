@@ -47,7 +47,7 @@ Task("Test")
     {
         string appveyor = EnvironmentVariable("APPVEYOR");
         bool isRunningOnUnix = IsRunningOnUnix();
-        string testProjectPath = "./Iyzipay.Tests/Armut.Iyzipay.Tests.csproj";
+        string testProjectPath = "./tests/Iyzipay.Tests/Armut.Iyzipay.Tests.csproj";
 
         DotNetCoreTestSettings settings = new DotNetCoreTestSettings();
         settings.Configuration = configuration;
@@ -84,7 +84,7 @@ Task("Test")
             NuGetInstall("NUnit.ConsoleRunner", nugetInstallSettings);
 
             StartProcess("mono", new ProcessSettings {
-                Arguments = $"./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe/ ./Iyzipay.Tests/bin/Release/{fullFrameworkTarget}/Armut.Iyzipay.Tests.dll"
+                Arguments = $"./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe/ ./tests/Iyzipay.Tests/bin/Release/{fullFrameworkTarget}/Armut.Iyzipay.Tests.dll"
             });
         }
     });
