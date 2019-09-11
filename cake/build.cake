@@ -11,7 +11,7 @@ var netCoreTarget21 = "netcoreapp2.1";
 var netCoreTarget22 = "netcoreapp2.2";
 
 var projects = GetFiles("**/*.csproj");
-string testProjectPath = "../Iyzipay.Tests/Armut.Iyzipay.Tests.csproj";
+string testProjectPath = "../tests/Iyzipay.Tests/Armut.Iyzipay.Tests.csproj";
 
 Task("Default")
     .IsDependentOn("Test");
@@ -112,7 +112,7 @@ Task("NetFramework4.5Tests")
             NuGetInstall("NUnit.ConsoleRunner", nugetInstallSettings);
 
             StartProcess("mono", new ProcessSettings {
-                Arguments = $"./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe/ ./Iyzipay.Tests/bin/Release/{fullFrameworkTarget}/Armut.Iyzipay.Tests.dll"
+                Arguments = $"./testrunner/NUnit.ConsoleRunner.*/tools/nunit3-console.exe/ ./tests/Iyzipay.Tests/bin/Release/{fullFrameworkTarget}/Armut.Iyzipay.Tests.dll"
             });
         }
     });
@@ -130,7 +130,7 @@ Task("Nuget-Pack")
         var settings = new DotNetCorePackSettings
         {
             Configuration = "Release",
-            WorkingDirectory = "../Iyzipay",
+            WorkingDirectory = "../src/Iyzipay",
             OutputDirectory = "../artifacts"
         };
 
