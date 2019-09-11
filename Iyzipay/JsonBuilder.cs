@@ -42,12 +42,13 @@ namespace Armut.Iyzipay
             jsonSerializer.ContractResolver = new CamelCasePropertyNamesContractResolver();
             jsonSerializer.Formatting = Formatting.Indented;
 
-            using (JsonTextWriter jsonWriter = new JsonTextWriter(sw))
+            using (JsonTextWriter jsonWriter = new JsonTextWriter(sw)
             {
-                jsonWriter.Formatting = Formatting.Indented;
-                jsonWriter.IndentChar = '\t';
-                jsonWriter.Indentation = 1;
-
+                Formatting = Formatting.Indented,
+                IndentChar = '\t',
+                Indentation = 1
+            })
+            {
                 jsonSerializer.Serialize(jsonWriter, value, typeof(BaseRequestV2));
             }
 
