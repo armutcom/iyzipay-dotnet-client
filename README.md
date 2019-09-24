@@ -7,9 +7,11 @@ Supports .NET Framework, .NET Core 1.1, .NET Core 2.0 runtimes, .NET Core 2.1 ru
 You can sign up for an iyzico account at https://iyzico.com
 
 ## Builds status
-|       | Linux | Windows |
-|-------|-------|----------|
-| Build | [![Build Status](https://travis-ci.org/armutcom/iyzipay-dotnet-client.svg?branch=master)](https://travis-ci.org/armutcom/iyzipay-dotnet-client)      | [![Build status](https://ci.appveyor.com/api/projects/status/ffjofvbl1bsmw2q8?svg=true)](https://ci.appveyor.com/project/Blind-Striker/iyzipay-dotnet-client)   
+| Build server                | Platform      | Build status                                                                                                                                                        | 
+|-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Azure Pipelines             | Ubuntu        | [![Build status](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_apis/build/status/iyzipay-dotnet-client%20-%20Ubuntu)](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_build/latest?definitionId=4) | |
+| Azure Pipelines             | MacOs         | [![Build status](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_apis/build/status/iyzipay-dotnet-client%20-%20MacOs)](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_build/latest?definitionId=5) | |
+| Azure Pipelines             | Windows       | [![Build status](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_apis/build/status/iyzipay-dotnet-client%20-%20Windows)](https://dev.azure.com/armutcom/iyzipay-dotnet-client/_build/latest?definitionId=6) | |
 
 ## Installation
 [![NuGet](https://img.shields.io/nuget/v/Armut.Iyzipay.svg)](https://www.nuget.org/packages/Armut.Iyzipay)
