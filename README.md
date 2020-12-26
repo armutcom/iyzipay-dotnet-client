@@ -26,7 +26,7 @@ Install-Package Armut.Iyzipay
 
 This client library is a fork of [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet). The following improvements have been made:
 
-- Unit tests in [iyipay-java](https://github.com/iyzico/iyzipay-java) library have been adapted to C#.
+- Unit tests in [iyzipay-java](https://github.com/iyzico/iyzipay-java) library have been adapted to C#.
 - Supported .NET Core 1.1 and .NET Core 2.0 by converting the client library to .NET Standard.
 - Async support provided.
 - Instead of creating a new 'HttpClient' in each request, the shared 'HttpClient' has been used.
