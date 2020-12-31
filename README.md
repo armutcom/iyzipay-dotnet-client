@@ -1,6 +1,6 @@
 # Iyzipay Client Library for .Net Framework and .Net Core
 
-Unofficial Iyzipay client library that maintained by [Armut.com](https://armut.com/), fork of the [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet)
+Unofficial Iyzipay client library that is maintained by [Armut.com](https://armut.com/), a fork of the [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet)
 
 Supports .NET Framework, .NET Core 1.1, .NET Core 2.0 runtimes, .NET Core 2.1 runtimes
 
@@ -24,15 +24,15 @@ Install-Package Armut.Iyzipay
  
 # Relation To Official Iyzipay
 
-This client library is a fork of [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet). The following improvments have been made:
+This client library is a fork of [iyzipay-dotnet](https://github.com/iyzico/iyzipay-dotnet). The following improvements have been made:
 
-- Unit tests in [iyipay-java](https://github.com/iyzico/iyzipay-java) library have been adapted to C#.
+- Unit tests in [iyzipay-java](https://github.com/iyzico/iyzipay-java) library have been adapted to C#.
 - Supported .NET Core 1.1 and .NET Core 2.0 by converting the client library to .NET Standard.
 - Async support provided.
 - Instead of creating a new 'HttpClient' in each request, the shared 'HttpClient' has been used.
 - Refactoring done according to C# coding standards.
 
-Because of armut.com is already using iyico, armut.com will keep the Armut.Iyzipay project up to date and maintain it.
+Because armut.com is already using iyzico, armut.com will keep the Armut.Iyzipay project up to date and maintain it.
 
 # Usage
 
